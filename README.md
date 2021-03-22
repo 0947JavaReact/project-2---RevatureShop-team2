@@ -43,12 +43,12 @@ Cart:
 
 ## Contributors:
 
-Reynaldo Amaya
+[Reynaldo Amaya](https://github.com/ReyA105)
 
-Lindsay Read
+[Lindsay Read](https://github.com/lindsayread)
 
-Estevan Mora
+[Estevan Mora](https://github.com/poraltic)
 
-Connor Smith
+[Connor Smith](https://github.com/smithium)
 
-Nathanael Williams
+[Nathanael Williams](https://github.com/nathanael567)
