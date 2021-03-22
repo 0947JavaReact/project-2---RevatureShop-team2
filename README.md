@@ -29,7 +29,9 @@ Cart:
 - List of items
 - Total price
 
+
 ![proj2userstories](https://user-images.githubusercontent.com/65792127/112054769-97144d00-8b1b-11eb-8471-5fec0e2cffe4.png)
+
 
 ## Technologies:
 
