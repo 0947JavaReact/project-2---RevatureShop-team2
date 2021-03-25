@@ -33,9 +33,11 @@ function CustomerInformation(props){
              
             <label for="Zipcode">Zipcode </label>
             <input for="Zipcode" value= {user.zipcode} type="text" readOnly/><br/>
+            
             <Link to="/ChangeInformation">
             <button>button to change to changeInformation Component</button>
             </Link>
+            
            <CustomerOrders />
             
         </div>
