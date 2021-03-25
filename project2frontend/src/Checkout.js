@@ -60,6 +60,8 @@ const Checkout = () =>{
                         </li>
                     ))}
                 </ul>
+                <p>Total amount: </p>
+                <button>Checkout</button>
             </div>
         </div>
     )
