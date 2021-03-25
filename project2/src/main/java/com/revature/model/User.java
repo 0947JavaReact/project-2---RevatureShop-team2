@@ -2,12 +2,20 @@ package com.revature.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Users")
 public class User {
 	
 	public static enum UserType{
 		CUSTOMER, DRIVER, MANAGER
 	}
-	
+	@Id
+	@Column(name="user_id")
 	private int UserId;
 	private String Username;
 	private String Password;
