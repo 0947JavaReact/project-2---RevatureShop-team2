@@ -31,7 +31,7 @@ function Register() {
                     <input type='text' />
                     <select className="dropdown">
                         <option value="Customer">Customer</option>
-                        <option value="Driver">Driver</option>
+                        <option value="Driver">Driver (Coming soon)</option>
                     </select>
 
                     <button type='submit' className='login__signInButton' onClick="/register" >Register</button>

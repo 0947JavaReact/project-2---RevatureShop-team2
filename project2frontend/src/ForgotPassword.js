@@ -16,6 +16,10 @@ function ForgotPassword() {
 
                 <form>
                     <h5>Enter your RevatureShop email</h5>
+                    <p>
+                        Once you have enter your RevatureShop email, you will recieve an email regarding your 
+                        password recovery.
+                    </p>
                     <input type='text' />
 
                     <button type='submit' className='reset_button' onClick="/login" >Send recovery email</button>
