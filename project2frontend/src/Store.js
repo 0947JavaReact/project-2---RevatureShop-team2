@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Logo from './logo.jpg';
-// function ShowItems() {
-const ShowItems = (props)=>{
+
+
+
+//const ShowItems = (props)=>{
+function ShowItems() {
     return (
         <div className="store_catalogue">
-            <Link to='./store_catalogue'>
-            </Link>
+            {/* <Link to='./store_catalogue'>
+            </Link> */}
             <div className='store_container'>
                 <table>
                     <tr>
@@ -40,4 +43,4 @@ const ShowItems = (props)=>{
         </div>
     )
 }
-export default ShowItems();
+export default ShowItems;

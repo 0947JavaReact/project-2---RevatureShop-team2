@@ -23,7 +23,7 @@ function Login() {
                     <input type='password' />
 
                     <Link to="/store_catalogue" className="store_catalogue">
-                        <button type='submit' className='login__signInButton' onClick="/register" >Sign In</button>
+                        <button type='submit' className='login__signInButton' onClick="/store_catalogue" >Sign In</button>
                     </Link>
                 </form>
 
