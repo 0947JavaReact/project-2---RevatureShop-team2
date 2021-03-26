@@ -1,3 +1,4 @@
+  
 import React, { Component } from 'react';
 import './Login.css';
 import Logo from "./logo.jpg";
@@ -6,16 +7,7 @@ import UserServices from './services/UserServices';
 
 
 {/*Login page */ }
-<<<<<<< HEAD
-function storeCatalogue(){        
-    this.push('/store_catalogue/'); 
-    // this.props.history.push('/store_catalogue');   
-}
-function Login() {
-    return (
-=======
 class Login extends Component {
->>>>>>> Nathanael
 
     constructor(props) {
         super(props)
@@ -30,18 +22,7 @@ class Login extends Component {
     }
     checkUser = (e) => {
         e.preventDefault();
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-                    <Link to="/store_catalogue" className="store_catalogue">
-                        <button type='submit' className='login__signInButton' onClick={storeCatalogue}>Sign In</button>
-                    </Link>
-                </form>
-=======
-        let user = {emailId: this.state.emailId, password: this.state.password };
-=======
         let user = { emailId: this.state.emailId, password: this.state.password };
->>>>>>> Nathanael
 
         {/* Display the user in JSON in the console */ }
         console.log('User => ' + JSON.stringify(user));
@@ -50,12 +31,6 @@ class Login extends Component {
         UserServices.createUser(user).then(res => {
             this.props.history.push('/store');
         });
-<<<<<<< HEAD
->>>>>>> Nathanael
-
-
-=======
->>>>>>> Nathanael
     }
 
     changeEmailHandler = (event) => {
@@ -73,14 +48,8 @@ class Login extends Component {
                     <img className='logo_login'
                         src={Logo} alt='logo' />
                 </Link>
-<<<<<<< HEAD
-
-                
-            </div>
-=======
                 <div className='login__container'>
                     <h1>Sign-in</h1>
->>>>>>> Nathanael
 
                     <form>
                         <h5>E-mail</h5>
