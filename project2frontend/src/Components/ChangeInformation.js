@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Route } from 'react-router';
+import './ChangeInformation.css';
 
 //allow user to change firstname, lastname, street address, city, state, zipcode
 //address will be validated, if not 
@@ -21,6 +22,8 @@ function ChangeInformation(props){
             <br/>users will be routed back to CustomerInformation with an alert that tells the user that the address is invalid</p>
             
             <form onSubmit={onSubmit}>
+                <h1>Update Information </h1>
+                <h6>*You cannot change your Username or your email*</h6>
                 <label for="UserName" >Username </label>
                 <input name="UserName" value= {user.username} onChange={onChange} id="username" readOnly/><br/>
                 
@@ -33,7 +36,7 @@ function ChangeInformation(props){
                 <label for="LastName" >LastName </label>
                 <input name="lastName" value= {user.lastName} onChange={onChange} id="lastName" /><br/>
                 
-                <h2>Address Information</h2>
+                <h2>Update Address Information</h2>
                 <label for="StreeName">Street Name </label>
                 <input name="streetName" value= {user.streetName} onChange={onChange} type="text" id="streetName"/><br/>
 
@@ -47,7 +50,7 @@ function ChangeInformation(props){
                 <input name="zipcode" value= {user.zipcode} onChange={onChange} type="text" /><br/>
 
                 <div className="form-group">
-                        <input type="submit" value="Update account information" className="btn btn-primary" />
+                        <button type="submit" className="btn btn-primary">Update</button>
                 </div>
             </form>
         </div>
