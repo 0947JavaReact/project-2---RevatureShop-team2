@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import CustomerOrders from './CustomerOrders';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom';
+import './CustomerInformation.css'
 
 function CustomerInformation(props){
     let [user, setUser] = useState({username:'testUser',password:'testPass',firstName:'testFirst',lastName:'testLast',email:'test@test.com',userType:1,streetName:'11730 Plaza America Dr',city:'reston',state:'VA',zipcode:'20190'});
  
     return(
-        <div>
+        <div >
+            <div className="userInfo">
              <h2>Your Information</h2>
             <label for="UserName" >Username </label>
             <input name="UserName" value= {user.username} id="FirstName" readOnly/><br/>
@@ -35,11 +37,13 @@ function CustomerInformation(props){
             <input for="Zipcode" value= {user.zipcode} type="text" readOnly/><br/>
             
             <Link to="/ChangeInformation">
-            <button>button to change to changeInformation Component</button>
+            <button>Click here to update your information</button>
             </Link>
-            
-           <CustomerOrders />
-            
+            </div>
+
+            <div className="orderInfo">
+                <CustomerOrders />
+            </div>
         </div>
 
     )
