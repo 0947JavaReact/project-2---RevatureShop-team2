@@ -1,0 +1,12 @@
+Body{
+    background-color: white;
+}
+.addNewItem{
+    background: #fa6400;
+    border-radius: 2px;
+    width: 20%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #fa6400;
+}
