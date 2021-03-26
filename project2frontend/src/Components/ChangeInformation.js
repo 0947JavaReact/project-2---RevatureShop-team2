@@ -10,7 +10,7 @@ function ChangeInformation(props){
         alert("submitted")
     }
     const onChange = (e) => {
-        setUser({...user,[e.taget.name]:e.target.value}) 
+        setUser({ ...user,[e.target.name]: e.target.value}) 
     }
     return(
         <div>
@@ -22,29 +22,29 @@ function ChangeInformation(props){
             
             <form onSubmit={onSubmit}>
                 <label for="UserName" >Username </label>
-                <input name="UserName" value= {user.username} id="username" readOnly/><br/>
+                <input name="UserName" value= {user.username} onChange={onChange} id="username" readOnly/><br/>
                 
                 <label for="Email" >Email </label>
-                <input name="Email" value= {user.email} id="email" readOnly/><br/>
+                <input name="Email" value= {user.email} onChange={onChange} id="email" readOnly/><br/>
                 
                 <label for="FirstName" >FirstName </label>
-                <input name="FirstName" value= {user.firstName} id="FirstName" /><br/>
+                <input name="firstName" value= {user.firstName} onChange={onChange} id="firstName" /><br/>
                 
                 <label for="LastName" >LastName </label>
-                <input name="LastName" value= {user.lastName} id="LastName" /><br/>
+                <input name="lastName" value= {user.lastName} onChange={onChange} id="lastName" /><br/>
                 
                 <h2>Address Information</h2>
                 <label for="StreeName">Street Name </label>
-                <input for="StreetName" value= {user.streetName} type="text" /><br/>
+                <input name="streetName" value= {user.streetName} onChange={onChange} type="text" id="streetName"/><br/>
 
                 <label for="City">City </label>
-                <input for="City" value= {user.city} type="text" /><br/>
+                <input name="city" value= {user.city} onChange={onChange}  type="text" /><br/>
                 
                 <label for="State">State </label>
-                <input for="State" value= {user.state} type="text" /><br/>
+                <input name="state" value= {user.state} onChange={onChange} type="text" /><br/>
                 
                 <label for="Zipcode">Zipcode </label>
-                <input for="Zipcode" value= {user.zipcode} type="text" /><br/>
+                <input name="zipcode" value= {user.zipcode} onChange={onChange} type="text" /><br/>
 
                 <div className="form-group">
                         <input type="submit" value="Update account information" className="btn btn-primary" />

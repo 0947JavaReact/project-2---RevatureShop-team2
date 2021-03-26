@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import CustomerOrders from './CustomerOrders';
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom';
 
 function CustomerInformation(props){

@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 
 {/*Login page */ }
 function storeCatalogue(){        
-    this.history.push('/store_catalogue/');    
+    this.push('/store_catalogue/'); 
+    // this.props.history.push('/store_catalogue');   
 }
 function Login() {
     return (
