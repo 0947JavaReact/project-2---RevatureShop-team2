@@ -24,7 +24,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+<<<<<<< HEAD
     "react-scripts": "3.4.1"
+>>>>>>> Nathanael
+=======
+    "react-scripts": "3.4.1",
+    "react-validation": "^3.0.7",
+    "validator": "^13.5.2"
 >>>>>>> Nathanael
   },
   "scripts": {
