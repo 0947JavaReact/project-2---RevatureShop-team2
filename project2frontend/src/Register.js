@@ -35,8 +35,6 @@ class Register extends Component {
         UserServices.createUser(user).then(res =>{
             this.props.history.push('./');
         });
-
-
     }
     changeFirstNameHandler = (event) => {
         this.setState({ firstName: event.target.value });
@@ -52,6 +50,7 @@ class Register extends Component {
     changePasswordHandler = (event) => {
         this.setState({ password: event.target.value });
     }
+
     render() {
         return (
             <div className='register'>
@@ -84,10 +83,6 @@ class Register extends Component {
                         <input type='text' placeholder=" Confirm Password" name="password" className="form-control"
                             value={this.state.password} onChange={this.changePasswordHandler} />
 
-                        <select className="dropdown">
-                            <option value="Customer">Customer</option>
-                            <option value="Driver">Driver (Coming soon)</option>
-                        </select>
 
                         <button type='submit' className='login__signInButton' onClick={this.saveUser} >Register</button>
 
@@ -97,6 +92,5 @@ class Register extends Component {
 
         )
     }
-
 }
 export default Register;

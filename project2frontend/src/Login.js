@@ -21,8 +21,7 @@ class Login extends Component {
     }
     checkUser = (e) => {
         e.preventDefault();
-
-        let user = {emailId: this.state.emailId, password: this.state.password };
+        let user = { emailId: this.state.emailId, password: this.state.password };
 
         {/* Display the user in JSON in the console */ }
         console.log('User => ' + JSON.stringify(user));
@@ -31,8 +30,6 @@ class Login extends Component {
         UserServices.createUser(user).then(res => {
             this.props.history.push('/store');
         });
-
-
     }
 
     changeEmailHandler = (event) => {
@@ -41,6 +38,7 @@ class Login extends Component {
     changePasswordHandler = (event) => {
         this.setState({ password: event.target.value });
     }
+
     render() {
         return (
 
@@ -61,13 +59,13 @@ class Login extends Component {
                         <input type='password' name="password" className="form-control"
                             value={this.state.password} onChange={this.changePasswordHandler} required />
 
-                        <button type='submit' className='login__signInButton' onClick="/register" >Sign In</button>
-
+                        <button type='submit' className='login__signInButton' onClick={this.checkUser} > Sign In</button>
                     </form>
 
                     <p>
                         When you sign in sign in, you are agreeing to the RevatureShop terms & conditions.
-                </p>
+                    </p>
+
                     <Link to="/forgot" className="forgot_password">
                         <div className="forgot_password">
                             <span className="statement">Forgot password?</span>
@@ -79,13 +77,9 @@ class Login extends Component {
                         <button className='login__registerButton'>Create your RevatureShop Account</button>
                     </Link>
                 </div>
-
-
             </div>
 
         )
-
-
     }
 }
 export default Login;
