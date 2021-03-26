@@ -7,12 +7,12 @@ function Register() {
 
     return (
         <div className='register'>
-            <Link to='./'>
+            <Link to='./login'>
                 <img className='logo_login'
                     src={Logo} alt='logo' />
             </Link>
             <div className='login__container'>
-                <h1>Welcome! You can now Register!</h1>
+                <h1>Registation!</h1>
 
                 <form>
                     <h5>Enter your First name</h5>
@@ -31,7 +31,7 @@ function Register() {
                     <input type='text' />
                     <select className="dropdown">
                         <option value="Customer">Customer</option>
-                        <option value="Driver">Driver</option>
+                        <option value="Driver">Driver (Coming soon)</option>
                     </select>
 
                     <button type='submit' className='login__signInButton' onClick="/register" >Register</button>
