@@ -22,8 +22,9 @@ function Login() {
                     <h5>Password</h5>
                     <input type='password' />
 
-                    <button type='submit' className='login__signInButton' onClick="/register" >Sign In</button>
-
+                    <Link to="/store_catalogue" className="store_catalogue">
+                        <button type='submit' className='login__signInButton' onClick="/store_catalogue" >Sign In</button>
+                    </Link>
                 </form>
 
                 <p>
@@ -39,6 +40,8 @@ function Login() {
                 <Link to="/register" >
                     <button className='login__registerButton'>Create your RevatureShop Account</button>
                 </Link>
+
+                
             </div>
 
 
