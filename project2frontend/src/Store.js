@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Logo from './logo.jpg';
-
+import './Store.css';
 
 
 //const ShowItems = (props)=>{
