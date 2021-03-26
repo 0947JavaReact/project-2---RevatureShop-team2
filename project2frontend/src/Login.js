@@ -4,6 +4,9 @@ import Logo from "./logo.jpg";
 import { Link } from 'react-router-dom';
 
 {/*Login page */ }
+function storeCatalogue(){        
+    this.history.push('/store_catalogue/');    
+}
 function Login() {
     return (
 
@@ -23,7 +26,7 @@ function Login() {
                     <input type='password' />
 
                     <Link to="/store_catalogue" className="store_catalogue">
-                        <button type='submit' className='login__signInButton' onClick="/store_catalogue" >Sign In</button>
+                        <button type='submit' className='login__signInButton' onClick={storeCatalogue}>Sign In</button>
                     </Link>
                 </form>
 

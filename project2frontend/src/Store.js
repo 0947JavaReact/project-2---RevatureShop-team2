@@ -5,7 +5,9 @@ import Logo from './logo.jpg';
 
 
 //const ShowItems = (props)=>{
+
 function ShowItems() {
+    
     return (
         <div className="store_catalogue">
             {/* <Link to='./store_catalogue'>
