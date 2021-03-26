@@ -39,7 +39,7 @@ function ShowItems() {
             </div>
             <div>
                 <Link to="/add_new_item" >
-                    <button className='login__registerButton'>Add New Item</button>
+                    <button className='addNewItem'>Add New Item</button>
                 </Link>
             </div>
         </div>
