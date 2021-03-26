@@ -18,14 +18,15 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/">
-            <Login />
-          </Route>
+       
           <Route path="/ChangeInformation">
             <ChangeInformation />  
           </Route> 
           <Route path ="/CustomerInformation">
               <CustomerInformation />
+          </Route>
+          <Route path="/">
+            <Login />
           </Route>
         </Switch>
       </div>

@@ -10,7 +10,7 @@ function ChangeInformation(props){
         alert("submitted")
     }
     const onChange = (e) => {
-        setUser({...user,[e.taget.name]:e.target.value}) 
+        setUser({ ...user,[e.target.name]: e.target.value}) 
     }
     return(
         <div>
@@ -28,23 +28,23 @@ function ChangeInformation(props){
                 <input name="Email" value= {user.email} onChange={onChange} id="email" readOnly/><br/>
                 
                 <label for="FirstName" >FirstName </label>
-                <input name="FirstName" value= {user.firstName} onChange={onChange} id="FirstName" /><br/>
+                <input name="firstName" value= {user.firstName} onChange={onChange} id="firstName" /><br/>
                 
                 <label for="LastName" >LastName </label>
-                <input name="LastName" value= {user.lastName} onChange={onChange} id="LastName" /><br/>
+                <input name="lastName" value= {user.lastName} onChange={onChange} id="lastName" /><br/>
                 
                 <h2>Address Information</h2>
                 <label for="StreeName">Street Name </label>
-                <input for="StreetName" value= {user.streetName} onChange={onChange} type="text" /><br/>
+                <input name="streetName" value= {user.streetName} onChange={onChange} type="text" id="streetName"/><br/>
 
                 <label for="City">City </label>
-                <input for="City" value= {user.city} onChange={onChange}  type="text" /><br/>
+                <input name="city" value= {user.city} onChange={onChange}  type="text" /><br/>
                 
                 <label for="State">State </label>
-                <input for="State" value= {user.state} onChange={onChange} type="text" /><br/>
+                <input name="state" value= {user.state} onChange={onChange} type="text" /><br/>
                 
                 <label for="Zipcode">Zipcode </label>
-                <input for="Zipcode" value= {user.zipcode} onChange={onChange} type="text" /><br/>
+                <input name="zipcode" value= {user.zipcode} onChange={onChange} type="text" /><br/>
 
                 <div className="form-group">
                         <input type="submit" value="Update account information" className="btn btn-primary" />
