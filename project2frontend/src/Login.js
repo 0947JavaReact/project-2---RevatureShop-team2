@@ -27,7 +27,7 @@ class Login extends Component {
         console.log('User => ' + JSON.stringify(user));
 
         {/* Calls User Services to create the user */ }
-        UserServices.createUser(user).then(res => {
+        UserServices.getUserLogin(user.emailId,user.password).then(res => {
             this.props.history.push('/store');
         });
     }

@@ -14,41 +14,57 @@ class Register extends Component {
             id: '',
             firstName: '',
             lastName: '',
+            username: '',
             emailId: '',
-            password: ''
+            password: '',
+            userType: 1
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
+        this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
+        this.changeUserHandler = this.changeUserHandler.bind(this);
 
     }
     saveUser = (e) => {
         e.preventDefault();
-        
-        let user = { firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId, password: this.state.password };
-        
+
+        let user = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            username: this.state.username,
+            emailId: this.state.emailId,
+            password: this.state.password,
+            userType: this.state.userType
+        };
+
         {/* Display the user in JSON in the console */ }
         console.log('User => ' + JSON.stringify(user));
-        
+
         {/* Calls User Services to create the user */ }
-        UserServices.createUser(user).then(res =>{
-            this.props.history.push('./');
+        UserServices.createUser(user).then(res => {
+            this.props.history.push('/login');
         });
     }
+
     changeFirstNameHandler = (event) => {
         this.setState({ firstName: event.target.value });
     }
-
     changeLastNameHandler = (event) => {
         this.setState({ lastName: event.target.value });
     }
-
+    changeUsernameHandler = (event) => {
+        this.setState({ username: event.target.value });
+    }
     changeEmailHandler = (event) => {
         this.setState({ emailId: event.target.value });
     }
     changePasswordHandler = (event) => {
         this.setState({ password: event.target.value });
+    }
+    changeUserHandler = (event) => {
+        this.setState({ userType: event.target.value });
     }
 
     render() {
@@ -71,6 +87,10 @@ class Register extends Component {
                         <input type='text' placeholder="Last Name" name="lastName" className="form-control"
                             value={this.state.lastName} onChange={this.changeLastNameHandler} />
 
+                        <h5>Enter a username</h5>
+                        <input type='text' placeholder="Username" name="username" className="form-control"
+                            value={this.state.username} onChange={this.changeUsernameHandler} />
+
                         <h5>Enter your email</h5>
                         <input type='text' placeholder="Email Address" name="emailId" className="form-control"
                             value={this.state.emailId} onChange={this.changeEmailHandler} />
@@ -82,7 +102,6 @@ class Register extends Component {
                         <h5>Confirm password</h5>
                         <input type='text' placeholder=" Confirm Password" name="password" className="form-control"
                             value={this.state.password} onChange={this.changePasswordHandler} />
-
 
                         <button type='submit' className='login__signInButton' onClick={this.saveUser} >Register</button>
 

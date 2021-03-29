@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_API_BASE_URL = " ";
+const USER_API_BASE_URL = "http://localhost:8080/api/users";
 
 {/* User Services! */ }
 
@@ -11,14 +11,17 @@ class UserServices {
     }
 
     createUser(user){
-        return axios.post(USER_API_BASE_URL, user);
+        return axios.post(USER_API_BASE_URL + '/' + user);
     }
 
     getUserById(userId){
         return axios.get(USER_API_BASE_URL + '/' + userId);
     }
-    
 
+    getUserLogin(emailId, password){
+        return axios.get(USER_API_BASE_URL + '/' + emailId, password);
+    }
+    
     updateUser(user, userId){
         return axios.put(USER_API_BASE_URL + '/' + userId, user);
     }
