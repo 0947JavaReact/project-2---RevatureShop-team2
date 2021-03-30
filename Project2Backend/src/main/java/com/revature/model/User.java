@@ -2,11 +2,16 @@ package com.revature.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -29,25 +34,26 @@ public class User {
 	@Id
 	@Column(name="user_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int UserId;
+	private int userId;
 	@Column(name="username", unique=true, nullable=false)
-	private String Username;
+	private String username;
 	@Column(name="pass", nullable=false)
-	private String Password;
+	private String password;
 	@Column(name="email", unique=true)
 	private String email;
-	@Column(name="user_orders")
+	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
 	private List<Order> orders;
-	@Column(name="user_cart")
-	private Cart currentCart;
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="cart_FK")
+	private Cart userCart;
 	
 	public User(String username, String password, String email, List<Order> orders, Cart currentCart) {
 		super();
-		Username = username;
-		Password = password;
+		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.orders = orders;
-		this.currentCart = currentCart;
+		this.userCart = currentCart;
 	}
 
 	
