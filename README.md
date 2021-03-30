@@ -40,6 +40,7 @@ Cart:
 - React.JS
 - HTML
 - CSS
+- Spring
 
 ## Contributors:
 
