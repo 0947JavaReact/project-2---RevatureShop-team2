@@ -1,4 +1,4 @@
-package com.revature.repository;
+package com.revature.dao;
 
 public class OrderDao {
 
