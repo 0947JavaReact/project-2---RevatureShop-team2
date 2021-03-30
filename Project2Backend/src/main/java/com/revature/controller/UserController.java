@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/users")
 public class UserController {
 
 	@Autowired
@@ -32,12 +32,12 @@ public class UserController {
 	}		
 	
 	// Create User rest api
-	@PostMapping("/user")
+	@PostMapping()
 	public User createUser(@RequestBody User user) {
 		return userServices.insertUser(user);
 	}
 
-    @GetMapping("/users/{emailId}")
+    @GetMapping("/user")
 	public ResponseEntity<User> getUserByLogin(@PathVariable String emailId, @PathVariable String password) {
         if( userServices.getEmailPass(emailId, password) == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

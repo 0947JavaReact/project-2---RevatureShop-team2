@@ -4,9 +4,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://project2.cvnkugrfdj8n.us-east-2.rds.amazonaws.com:5432/storedb
-    username: storeadmin
-    password: password
+    url: jdbc:postgresql://
+    username: 
+    password: 
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect

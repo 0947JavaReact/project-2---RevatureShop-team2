@@ -7,8 +7,8 @@ import UserServices from './services/UserServices';
 {/* Register! */ }
 class Register extends Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             id: '',
@@ -17,8 +17,9 @@ class Register extends Component {
             username: '',
             emailId: '',
             password: '',
-            userType: 1
-        }
+            userType: ''
+        };
+
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
@@ -27,6 +28,9 @@ class Register extends Component {
         this.changeUserHandler = this.changeUserHandler.bind(this);
 
     }
+
+
+
     saveUser = (e) => {
         e.preventDefault();
 
@@ -102,6 +106,11 @@ class Register extends Component {
                         <h5>Confirm password</h5>
                         <input type='text' placeholder=" Confirm Password" name="password" className="form-control"
                             value={this.state.password} onChange={this.changePasswordHandler} />
+
+                        <select value={this.state.userType} onChange={this.changeUserHandler}>
+                            <option value="Customer">Customer</option>
+                            <option value="Manager">Manager</option>
+                        </select>
 
                         <button type='submit' className='login__signInButton' onClick={this.saveUser} >Register</button>
 
