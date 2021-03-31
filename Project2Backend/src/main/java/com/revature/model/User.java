@@ -1,5 +1,6 @@
 package com.revature.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,10 +40,10 @@ public class User {
 	private String username;
 	@Column(name="pass", nullable=false)
 	private String password;
-	@Column(name="email", unique=true)
+	@Column(name="email", unique=true, nullable=false)
 	private String email;
 	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
-	private List<Order> orders;
+	private List<Order> orders = new ArrayList<>();
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="cart_FK")
 	private Cart userCart;

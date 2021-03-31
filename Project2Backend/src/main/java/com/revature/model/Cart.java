@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -31,5 +32,7 @@ public class Cart {
 	private List<Item> items;
 	@Column(name="cart_total")
 	private double amount;
+	@OneToOne(mappedBy="userCart")
+	private User cartCreator;
 	
 }

@@ -50,5 +50,12 @@ public class Order {
 	@Column(name="deliver_time")
 	private LocalDateTime deliverTime;
 	
-
+	public Order(User creator, double amount, List<Item> items, byte[] photo, LocalDateTime orderTime) {
+		super();
+		this.creator = creator;
+		this.amount = amount;
+		this.items = items;
+		this.photo = photo;
+		this.orderTime = orderTime;
+	}
 }
