@@ -1,6 +1,6 @@
 package com.revature.services;
 
-import com.revature.dao.OrderDao;
+import com.revature.repository.OrderDao;
 import com.revature.model.Order;
 
 import java.util.List;
