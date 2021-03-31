@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +24,10 @@ import lombok.ToString;
 @Entity
 @Table(name="items")
 public class Item {
+	
+//	public enum ItemType{
+//		Electronics, Books, Movies, Apparel
+//	}
 	
 	@Id
 	@Column(name="item_id")
@@ -35,11 +40,15 @@ public class Item {
 	@Column(name="item_photo")
 	private byte[] photo;
 	
+//	@Column(name="item_type")
+//	private ItemType itemtype;
+	
 	public Item(String name, double price, byte[] photo) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.photo = photo;
+		//this.itemtype = itemtype;
 	}
 	
 	

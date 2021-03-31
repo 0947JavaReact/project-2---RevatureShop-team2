@@ -1,4 +1,4 @@
-package com.revature.dao;
+package com.revature.repository;
 import com.revature.model.Order;
 
 import java.util.List;
