@@ -14,6 +14,7 @@ import com.revature.repository.ItemDao;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import com.revature.Project2BackendApplication;
 
 @Service
 @NoArgsConstructor
@@ -36,6 +37,7 @@ public class ItemServices {
 	}
 	
 	public void insertItem(Item item) {
+		Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
 		iDao.save(item);
 	}
 	
@@ -44,6 +46,7 @@ public class ItemServices {
 //	}
 	
 	public void deleteItem(Item item) {
+		Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
 		iDao.delete(item);
 	}
 }
