@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import com.revature.Project2BackendApplication;
 
 @Service
 @NoArgsConstructor
@@ -34,14 +35,17 @@ public class OrderServices {
 	}
 
 	public void insertOrder(Order order) {
-			orderDao.save(order);
+		Project2BackendApplication.logger.info("order has been created by user: " + order.getCreator());
+		orderDao.save(order);
 	}
 
 	public void deleteOrder(Order order) {
-			orderDao.delete(order);
+		Project2BackendApplication.logger.info("order" + order.getOrderNumber() + " has been deleted by user: " + order.getCreator());
+		orderDao.delete(order);
 	}
 
 	public void updateOrder(Order order) {
+		Project2BackendApplication.logger.info("order" + order.getOrderNumber() + " has been updated by user: " + order.getCreator());
 		
 	}
 	
