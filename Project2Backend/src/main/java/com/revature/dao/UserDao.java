@@ -5,13 +5,19 @@ import java.util.List;
 import com.revature.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 
-public interface UserDao extends JpaRepository<User, Integer> {//needs the object its working with and the primary key
-	//type as generics
-	
+/*
+* UserDao/Repository interface!
+*/ 
+@Repository
+public interface UserDao extends JpaRepository<User, Integer> {
+
 	public List<User> findAll();
-	public User findEmailPass(String email, String password);
-    public User findUserById(int id);
+
+	public User findByEmailAndPassword(String email,String password);
+
+	public User findUserById(int id);
 
 }

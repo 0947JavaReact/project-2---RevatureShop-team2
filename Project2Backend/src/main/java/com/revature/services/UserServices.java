@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.revature.dao.UserDao;
 import com.revature.model.User;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.NoArgsConstructor;
@@ -12,20 +12,17 @@ import lombok.NoArgsConstructor;
 @Service
 @NoArgsConstructor
 public class UserServices {
-
+	
+	@Autowired
 	private UserDao userDao;
 
-	public User getEmailPass(String email, String password) {
-		User user = userDao.findEmailPass(email, password);
-		if (user == null) {
-			return null;
-		}
-		return user;
+	public User findByEmailAndPass(String email, String password) {
+		 User user = userDao.findByEmailAndPassword(email, password);
+		 return user;
 	}
 
 	public List<User> getAll() {
 		return userDao.findAll();
-
 	}
 
 	public User getUserById(int id) {

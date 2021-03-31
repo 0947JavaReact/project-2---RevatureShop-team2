@@ -19,7 +19,13 @@ class UserServices {
     }
 
     getUserLogin(emailId, password){
-        return axios.get(USER_API_BASE_URL + '/' + emailId, password);
+        return axios.get(USER_API_BASE_URL+"/user" + '?emailId=' + emailId+'&password='+password)
+        .then(response => {
+            if (response.data) {
+                localStorage.setItem("user", JSON.stringify(response.data));
+            }
+            return response.data;
+        });
     }
     
     updateUser(user, userId){

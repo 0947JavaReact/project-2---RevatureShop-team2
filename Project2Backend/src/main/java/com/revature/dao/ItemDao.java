@@ -1,5 +1,11 @@
 package com.revature.dao;
 
-public class ItemDao {
+import com.revature.model.Item;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ItemDao extends JpaRepository<Item, Integer> {
 
 }
+

@@ -27,10 +27,16 @@ class Login extends Component {
         console.log('User => ' + JSON.stringify(user));
 
         {/* Calls User Services to create the user */ }
-        UserServices.getUserLogin(user.emailId,user.password).then(res => {
-            this.props.history.push('/store');
-        });
+        UserServices.getUserLogin(user.emailId, user.password)
+            .then(res => {
+                if (res.userType === 'MANAGER') {
+                    this.props.history.push('/manager');
+                } else if (res.userType === 'CUSTOMER') {
+                    this.props.history.push('/customer');
+                }
+            });
     }
+
 
     changeEmailHandler = (event) => {
         this.setState({ emailId: event.target.value });

@@ -29,8 +29,6 @@ class Register extends Component {
 
     }
 
-
-
     saveUser = (e) => {
         e.preventDefault();
 
@@ -38,9 +36,9 @@ class Register extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             username: this.state.username,
-            emailId: this.state.emailId,
+            email: this.state.emailId,
             password: this.state.password,
-            userType: this.state.userType
+            userType: this.state.userType === '' ? 'CUSTOMER' : this.state.userType
         };
 
         {/* Display the user in JSON in the console */ }
@@ -51,6 +49,7 @@ class Register extends Component {
             this.props.history.push('/login');
         });
     }
+
 
     changeFirstNameHandler = (event) => {
         this.setState({ firstName: event.target.value });

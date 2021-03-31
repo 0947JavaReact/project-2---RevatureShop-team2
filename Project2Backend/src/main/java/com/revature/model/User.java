@@ -1,14 +1,10 @@
 package com.revature.model;
 
 import java.util.List;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
+import com.revature.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,65 +18,79 @@ import lombok.ToString;
 @Entity
 @Table(name="users")
 public class User {
-	
-	public static enum UserType{
-		CUSTOMER, DRIVER, MANAGER
-	}
+
 	@Id
 	@Column(name="user_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int UserId;
+	private int userId;
+
 	@Column(name="username", unique=true, nullable=false)
-	private String Username;
-	@Column(name="pass", nullable=false)
-	private String Password;
+	private String username;
+
+	@Column(name="password", nullable=false)
+	private String password;
+
 	@Column(name="firstname")
-	private String firstname;
+	private String firstName;
+
 	@Column(name="lastname")
-	private String lastname;
+	private String lastName;
+
 	@Column(name="email", unique=true)
 	private String email;
-	@Column(name="user_orders")
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_orders",
+		joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "order_number", referencedColumnName = "order_number"))
 	private List<Order> orders;
-	@Column(name="user_cart")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_cart")
 	private Cart currentCart;
+
+	@Enumerated(EnumType.STRING)
 	@Column(name="user_type")
-	private int userType;
-	
-	public User(String username, String password, String firstname, String lastname, String email, List<Order> orders, Cart currentCart, int userType) {
-		super();
-		this.Username = username;
-		this.firstname =firstname;
-		this.lastname = lastname;
-		this.Password = password;
-		this.email = email;
-		this.orders = orders;
-		this.currentCart = currentCart;
-		this.userType = userType;
-	}
+	private UserType userType;
 
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -107,31 +117,15 @@ public class User {
 		this.currentCart = currentCart;
 	}
 
-	public int getUserType() {
+	public UserType getUserType() {
 		return userType;
 	}
 
-	public void setUserType(int userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 
-	@Override
-	public String toString() {
-		return "User [Password=" + Password + ", UserId=" + UserId + ", Username=" + Username + ", currentCart="
-				+ currentCart + ", email=" + email + ", orders=" + orders + ", userType=" + userType + "]";
-	}
+   
 
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 	
 }
