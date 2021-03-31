@@ -5,6 +5,8 @@ import Logo from './logo.jpg';
 {/* Register! */}
 function ForgotPassword() {
 
+    
+
     return (
         <div className='forgot'>
             <Link to='./login'>
