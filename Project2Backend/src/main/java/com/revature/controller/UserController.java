@@ -1,6 +1,5 @@
 package com.revature.controller;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,7 @@ public class UserController {
 
 		// Create User rest api
 		@PostMapping("/register")
-		public User createUser(@RequestBody LinkedHashMap<String, String> sMap, @RequestBody LinkedHashMap<String, String> oMap) {
-			System.out.println();
+		public User createUser(@RequestBody User user) {
 			return this.userServices.insertUser(user);
 		}
 
