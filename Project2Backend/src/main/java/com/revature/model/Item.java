@@ -38,6 +38,42 @@ public class Item {
 		this.price = price;
 		this.photo = photo;
 	}
+
+	public Item() {
+	}
+
+	public int getItemId() {
+		return ItemId;
+	}
+
+	public void setItemId(int itemId) {
+		ItemId = itemId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+	
 	
 	
 }

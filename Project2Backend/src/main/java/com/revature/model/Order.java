@@ -44,6 +44,76 @@ public class Order {
 
 	@Column(name="deliver_time")
 	private LocalDateTime deliverTime;
+
+	public Order() {
+	}
+
+	public Order(int orderNumber, String creator, double amount, List<Item> items, byte[] photo,
+			LocalDateTime orderTime, LocalDateTime deliverTime) {
+		this.orderNumber = orderNumber;
+		this.creator = creator;
+		this.amount = amount;
+		this.items = items;
+		this.photo = photo;
+		this.orderTime = orderTime;
+		this.deliverTime = deliverTime;
+	}
+
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
+	public String getCreator() {
+		return creator;
+	}
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public LocalDateTime getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(LocalDateTime orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	public LocalDateTime getDeliverTime() {
+		return deliverTime;
+	}
+
+	public void setDeliverTime(LocalDateTime deliverTime) {
+		this.deliverTime = deliverTime;
+	}
 	
 
 }

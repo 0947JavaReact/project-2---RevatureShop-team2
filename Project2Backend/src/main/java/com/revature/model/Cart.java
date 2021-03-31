@@ -31,6 +31,41 @@ public class Cart {
 
 	@Column(name="cart_total")
 	private double amount;
+
+	public Cart() {
+	}
+
+	public Cart(int cartId, List<Item> items, double amount) {
+		this.cartId = cartId;
+		this.items = items;
+		this.amount = amount;
+	}
+
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	
 	
 }
 

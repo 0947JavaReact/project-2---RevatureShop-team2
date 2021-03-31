@@ -39,6 +39,7 @@ public class User {
 	@Column(name="email", unique=true)
 	private String email;
 
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_orders",
 		joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
@@ -52,6 +53,23 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	@Column(name="user_type")
 	private UserType userType;
+
+	public User(int userId, String username, String password, String firstName, String lastName, String email,
+			List<Order> orders, Cart currentCart, UserType userType) {
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.orders = orders;
+		this.currentCart = currentCart;
+		this.userType = userType;
+	}
+
+	public User() {
+		super();
+	}
 
 	public int getUserId() {
 		return userId;
@@ -124,8 +142,5 @@ public class User {
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
-
-   
-
 	
 }
