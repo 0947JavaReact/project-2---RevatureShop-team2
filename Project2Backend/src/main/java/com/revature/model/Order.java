@@ -3,8 +3,10 @@ package com.revature.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,9 +40,11 @@ public class Order {
 	private int orderNumber;
 	
 	@ManyToOne
-	@JoinColumn(name="order_id", nullable=false)
-	@Column(name = "creator", nullable = false)
-	private String creator;
+	(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="creator_fk", nullable=false)
+	
+	//@Column(name = "creator", nullable = false)
+	private User creator;
 	
 	@Column(name = "total", nullable = false)
 	private double amount;
@@ -58,7 +62,7 @@ public class Order {
 	@Column(name = "deliver_time")
 	private LocalDateTime deliverTime;
 
-	public Order(String creator, double amount, List<Item> items, byte[] photo, LocalDateTime orderTime) {
+	public Order(User creator, double amount, List<Item> items, byte[] photo, LocalDateTime orderTime) {
 		super();
 		this.creator = creator;
 		this.amount = amount;

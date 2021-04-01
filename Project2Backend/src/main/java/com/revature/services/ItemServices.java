@@ -25,7 +25,7 @@ public class ItemServices {
 	private ItemDao iDao;
 	
 	public Item getItemByName(String name) {
-		Item item = iDao.findByItemName(name);
+		Item item = iDao.findByName(name);
 		if(item==null) {
 			return null;
 		}

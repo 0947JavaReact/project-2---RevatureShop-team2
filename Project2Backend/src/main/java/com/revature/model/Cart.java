@@ -2,11 +2,15 @@ package com.revature.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,14 +28,14 @@ import lombok.ToString;
 public class Cart {
 	
 	@Id
-	@Column(name="cartNumber")
+	@Column(name="cart_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartNumber;
 	
-	@Column(name="creator", nullable=false)
-	private String creator;
+	@OneToOne(mappedBy="currentCart")
+	private User cartCreator;
 	
-	@Column(name="cart_items")
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Item> items;
 	
 	@Column(name="cart_total")

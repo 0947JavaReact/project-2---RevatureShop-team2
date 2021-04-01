@@ -36,19 +36,7 @@ public class OrderController {
 
 	@PostMapping()
 	public ResponseEntity<String> insertOrder(@RequestBody LinkedHashMap<String, String> fMap) {
-		System.out.println(fMap);
-		ObjectMapper mapper = new ObjectMapper();
-		List<Item> oList = new ArrayList<Item>();
-		try {
-			 oList =  mapper.readValue(fMap.get("order_items"), new TypeReference<List<Item>>(){});
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		String str = "2016-03-04 11:30";DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");	
-		Order order = new Order(fMap.get("creator"), Double.parseDouble(fMap.get("amount")), oList,
-				fMap.get("order_photo").getBytes(),  LocalDateTime.parse(fMap.get("order_time"), formatter));
-
-		orderServ.insertOrder(order);
+		
 		return new ResponseEntity<>("Resource was Created", HttpStatus.CREATED);
 	}
 	
