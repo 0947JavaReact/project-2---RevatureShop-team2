@@ -9,6 +9,10 @@ class UserServices {
     getUsers(){
         return axios.get(USER_API_BASE_URL);
     }
+    //email
+    getEmail(){
+        return axios.get(USER_API_BASE_URL + '/' + emailId);
+    }
 
     createUser(user){
         return axios.post(USER_API_BASE_URL , user);

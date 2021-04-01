@@ -48,6 +48,24 @@ public class UserController {
 		return new ResponseEntity<>(this.userServices.getUserById(id), HttpStatus.OK);
 	}
 
+	// Get User by email rest api
+	@GetMapping("/users/{email}")
+	public void findUserByEmail(@PathVariable String email) {
+		User user = this.userServices.getUserByEmail(email);
+		if (user == null) {
+			 System.out.println("User is null");
+		}
+		//Replace it with your gmail creds.
+		String from = "revatureshop"; // GMail user name (just the part before "@gmail.com")
+        String pass = "p4ssword123"; // GMail password
+
+        String to = user.getEmail(); // list of recipient email addresses
+        String subject = "Reset Password";
+        String body = "There will be a link to the password reset!";
+        userServices.sendFromGMail(from, pass, to, subject, body);
+		
+	}
+
 	// Delete User from api
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
@@ -55,5 +73,6 @@ public class UserController {
 		this.userServices.deleteUser(user);
 		return new ResponseEntity<>("Resource Deleted", HttpStatus.GONE);
 	}
+	
 
 }
