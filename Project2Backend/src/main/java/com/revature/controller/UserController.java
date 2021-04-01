@@ -58,10 +58,11 @@ public class UserController {
 		//Replace it with your gmail creds.
 		String from = "revatureshop"; // GMail user name (just the part before "@gmail.com")
         String pass = "p4ssword123"; // GMail password
-
-        String to = user.getEmail(); // list of recipient email addresses
+		
+		String[] to = { user.getEmail() };
+         // list of recipient email addresses
         String subject = "Reset Password";
-        String body = "There will be a link to the password reset!";
+        String body = "Contact the HR department to reset password for now!";
         userServices.sendFromGMail(from, pass, to, subject, body);
 		
 	}

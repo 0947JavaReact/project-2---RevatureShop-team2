@@ -56,7 +56,7 @@ public class UserServices {
 	/*
 	* Send email from gmail using the Revatureshop email I created
 	*/
-	public void sendFromGMail(String from, String pass, String to, String subject, String body) {
+	public void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");
@@ -68,8 +68,22 @@ public class UserServices {
 
         Session session = Session.getDefaultInstance(props);
         MimeMessage message = new MimeMessage(session);
+		
+
 
         try {
+				message.setFrom(new InternetAddress(from));
+				InternetAddress[] toAddress = new InternetAddress[to.length];
+	
+			
+				for( int i = 0; i < to.length; i++ ) {
+					toAddress[i] = new InternetAddress(to[i]);
+				}
+	
+				for( int i = 0; i < toAddress.length; i++) {
+					message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+				}
+			
             message.setSubject(subject);
             message.setText(body);
             Transport transport = session.getTransport("smtp");
@@ -83,6 +97,6 @@ public class UserServices {
         catch (MessagingException me) {
             me.printStackTrace();
         }
-    }
+	}
 }
 

@@ -32,8 +32,8 @@ class UserServices {
         });
     }
     
-    updateUser(user, userId){
-        return axios.put(USER_API_BASE_URL + '/' + userId, user);
+    updateUser(user){
+        return axios.put(USER_API_BASE_URL + '/' + user);
     }
 
     deleteUser(userId){
