@@ -49,7 +49,7 @@ public class UserController {
 	}
 
 	// Get User by email rest api
-	@GetMapping("/users/{email}")
+	@GetMapping("/reset/{email}")
 	public void findUserByEmail(@PathVariable String email) {
 		User user = this.userServices.getUserByEmail(email);
 		if (user == null) {
@@ -58,7 +58,7 @@ public class UserController {
 		//Replace it with your gmail creds.
 		String from = "revatureshop"; // GMail user name (just the part before "@gmail.com")
         String pass = "p4ssword123"; // GMail password
-		
+
 		String[] to = { user.getEmail() };
          // list of recipient email addresses
         String subject = "Reset Password";
