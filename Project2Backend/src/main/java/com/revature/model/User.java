@@ -48,13 +48,11 @@ public class User {
 	@JoinColumn(name="cart_FK")
 	private Cart userCart;
 	
-	public User(String username, String password, String email, List<Order> orders, Cart currentCart) {
+	public User(String username, String password, String email) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.orders = orders;
-		this.userCart = currentCart;
 	}
 
 	

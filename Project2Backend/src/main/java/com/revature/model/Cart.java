@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -27,6 +29,7 @@ public class Cart {
 	
 	@Id
 	@Column(name="cart_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cartId;
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Item> items;
@@ -35,4 +38,11 @@ public class Cart {
 	@OneToOne(mappedBy="userCart")
 	private User cartCreator;
 	
+	public Cart(List<Item> items, double amount, User cartCreator) {
+		super();
+		this.items = items;
+		this.amount = amount;
+		this.cartCreator = cartCreator;
+	}
+
 }

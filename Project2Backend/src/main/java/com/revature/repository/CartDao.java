@@ -9,6 +9,6 @@ import com.revature.model.User;
 
 public interface CartDao extends JpaRepository<Cart, Integer> {
 	
-	public Cart findByCartCreator(User creator);
+	public Cart findByCartCreator(int creator);
 
 }

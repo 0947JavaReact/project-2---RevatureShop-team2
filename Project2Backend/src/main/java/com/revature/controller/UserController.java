@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,11 @@ public class UserController {
 
 		// Create User rest api
 		@PostMapping("/register")
-		public User createUser(@RequestBody User user) {
-			return this.userServices.insertUser(user);
-		}
+        public User createUser(@RequestBody LinkedHashMap<String,String> fMap) {
+            System.out.println(fMap);
+            User user = new User(fMap.get("username"),fMap.get("password"),fMap.get("email"));
+            return this.userServices.insertUser(user);
+        }
 
 		@GetMapping("/user")
 		public ResponseEntity<?> getUserByLogin(@RequestParam String emailId, @RequestParam String password) {
@@ -64,5 +67,24 @@ public class UserController {
 			User user = this.userServices.getUserById(id);
 			this.userServices.deleteUser(user);
 			return new ResponseEntity<>("Resource Deleted", HttpStatus.GONE);
+		}
+		
+		@GetMapping("/reset/{email}")
+		public void findUserByEmail(@PathVariable String email) {
+			System.out.println("in reset email");
+			User user = this.userServices.getUserByEmail(email);
+			if (user == null) {
+				 System.out.println("User is null");
+			}
+			//Replace it with your gmail creds.
+			String from = "revatureshop"; // GMail user name (just the part before "@gmail.com")
+	        String pass = "p4ssword123"; // GMail password
+	        System.out.println("further in reset email");
+	        String[] to = { user.getEmail() }; // list of recipient email addresses
+	        System.out.println(to);
+	        String subject = "Reset Password";
+	        String body = "There will be a link to the password reset!";
+	        userServices.sendFromGMail(from, pass, to, subject, body);
+			
 		}
 }
