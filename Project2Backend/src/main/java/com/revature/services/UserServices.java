@@ -3,18 +3,16 @@ package com.revature.services;
 
 import java.util.List;
 
-import com.revature.repository.UserDao;
-import com.revature.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import com.revature.model.User;
+import com.revature.repository.UserDao;
+import org.springframework.stereotype.Service;
 import lombok.NoArgsConstructor;
 
 @Service
 @NoArgsConstructor
 public class UserServices {
 
-    @Autowired
     private UserDao userDao;
 
     public User findByEmailAndPass(String email, String password) {
