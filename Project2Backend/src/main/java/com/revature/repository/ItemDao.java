@@ -8,9 +8,9 @@ import com.revature.model.Item;
 
 public interface ItemDao extends JpaRepository<Item,Integer>{
 	
-	public List<Item> getAllItems();
+	public List<Item> findAll();
 	
-	public Item findByItemName(String name);
+	public Item findItemByName(String name);
 	
 	//public List<Item> findByItemType(String itype);
 	

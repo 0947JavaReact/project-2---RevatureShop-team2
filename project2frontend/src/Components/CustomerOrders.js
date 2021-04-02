@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import OrderServices from '../services/OrderServices'
+
 //need to display order id, products, totalPrice statusShipping(either delivered or in progress), 
 function CustomerOrders(props) {
-    
+   
     return(
     <div>
       <br />

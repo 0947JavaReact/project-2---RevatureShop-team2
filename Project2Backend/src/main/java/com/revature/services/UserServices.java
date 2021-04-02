@@ -41,7 +41,7 @@ public class UserServices {
 	 * Get user by id
 	 */
 	public User getUserById(int id) {
-		User user = userDao.findUserById(id);
+		User user = userDao.findUserByUserId(id);
 		if (user == null) {
 			return null;
 		}
