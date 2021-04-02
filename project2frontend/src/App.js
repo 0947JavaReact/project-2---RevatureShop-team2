@@ -22,7 +22,12 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-    
+          <Route path="/logout">
+            <Logout />
+          </Route>
+          <Route path="/reset">
+            <ResetPassword />
+          </Route>
           <Route path="/ChangeInformation">
             <ChangeInformation />  
           </Route> 
