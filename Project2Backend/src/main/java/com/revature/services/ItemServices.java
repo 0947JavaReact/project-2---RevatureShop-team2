@@ -37,7 +37,7 @@ public class ItemServices {
 	}
 	
 	public void insertItem(Item item) {
-		Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
+		//Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
 		iDao.save(item);
 	}
 	
@@ -46,7 +46,11 @@ public class ItemServices {
 //	}
 	
 	public void deleteItem(Item item) {
-		Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
+		//Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
 		iDao.delete(item);
+	}
+	
+	public void updateItem(Item item) {
+		iDao.save(item);
 	}
 }

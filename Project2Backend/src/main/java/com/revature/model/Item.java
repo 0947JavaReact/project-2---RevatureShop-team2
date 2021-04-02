@@ -33,10 +33,13 @@ public class Item {
 	@Column(name="item_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ItemId;
+	
 	@Column(name="item_name", nullable=false)
 	private String name;
+	
 	@Column(name="price", nullable=false)
 	private double price;
+	
 	@Column(name="item_photo")
 	private byte[] photo;
 	

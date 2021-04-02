@@ -11,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,18 +42,16 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int orderNumber;
 	
-	@ManyToOne
-	(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="creator_fk", nullable=false)
-	
-	//@Column(name = "creator", nullable = false)
+	@JsonIgnoreProperties({"hibernateLazyInitializer","orders"})
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="creator_fk")
 	private User creator;
 	
 	@Column(name = "total", nullable = false)
 	private double amount;
 	
-	@OneToMany
-	@Column(name = "order_items", nullable = false)
+	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
+	//@Column(name = "order_items", nullable = false)
 	private List<Item> items;
 	
 	@Column(name = "order_photo")

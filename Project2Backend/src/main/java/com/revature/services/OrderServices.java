@@ -35,18 +35,18 @@ public class OrderServices {
 	}
 
 	public void insertOrder(Order order) {
-		Project2BackendApplication.logger.info("order has been created by user: " + order.getCreator());
+		//Project2BackendApplication.logger.info("order has been created by user: " + order.getCreator());
 		orderDao.save(order);
 	}
 
 	public void deleteOrder(Order order) {
-		Project2BackendApplication.logger.info("order" + order.getOrderNumber() + " has been deleted by user: " + order.getCreator());
+		//Project2BackendApplication.logger.info("order" + order.getOrderNumber() + " has been deleted by user: " + order.getCreator());
 		orderDao.delete(order);
 	}
 
 	public void updateOrder(Order order) {
-		Project2BackendApplication.logger.info("order" + order.getOrderNumber() + " has been updated by user: " + order.getCreator());
-		
+		//Project2BackendApplication.logger.info("order" + order.getOrderNumber() + " has been updated by user: " + order.getCreator());
+		orderDao.save(order);
 	}
 	
 
