@@ -11,7 +11,6 @@ class ResetPassword extends Component {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
             password: '',
         }
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
