@@ -36,9 +36,10 @@ public class ItemServices {
 		return iDao.findAll();
 	}
 	
-	public void insertItem(Item item) {
+	public Item insertItem(Item item) {
 		//Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
 		iDao.save(item);
+		return item;
 	}
 	
 //	public List<Item> getItemByType(String type) {
