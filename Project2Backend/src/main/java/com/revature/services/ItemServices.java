@@ -25,7 +25,7 @@ public class ItemServices {
 	private ItemDao iDao;
 	
 	public Item getItemByName(String name) {
-		Item item = iDao.findItemByName(name);
+		Item item = iDao.findByName(name);
 		if(item==null) {
 			return null;
 		}
@@ -36,9 +36,10 @@ public class ItemServices {
 		return iDao.findAll();
 	}
 	
-	public void insertItem(Item item) {
+	public Item insertItem(Item item) {
 		//Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
 		iDao.save(item);
+		return item;
 	}
 	
 //	public List<Item> getItemByType(String type) {
@@ -48,5 +49,9 @@ public class ItemServices {
 	public void deleteItem(Item item) {
 		//Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
 		iDao.delete(item);
+	}
+	
+	public void updateItem(Item item) {
+		iDao.save(item);
 	}
 }
