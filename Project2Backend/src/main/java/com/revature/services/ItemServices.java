@@ -22,7 +22,7 @@ public class ItemServices {
 	private ItemDao iDao;
 	
 	public Item getItemByName(String name) {
-		Item item = iDao.findByName(name);
+		Item item = iDao.findItemByName(name);
 		if(item==null) {
 			return null;
 		}
