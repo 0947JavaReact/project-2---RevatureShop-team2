@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Item;
 import com.revature.repository.ItemDao;
 
-//import com.example.model.Food;
-//import com.example.repository.FoodDao;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
