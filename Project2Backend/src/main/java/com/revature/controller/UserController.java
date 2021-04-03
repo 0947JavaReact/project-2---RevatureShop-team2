@@ -58,7 +58,7 @@ public class UserController {
 	/*
 	* Get the User by id
 	*/
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable int id) {
 		if (this.userServices.getUserById(id) == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -104,9 +104,22 @@ public class UserController {
 	}
 
 	/*
+	*Update the User's address
+	*/
+	@PutMapping("/address/{id}")
+	public ResponseEntity<User> updateUserAddress(@PathVariable int id, @RequestBody User user){
+		User currentUser = this.userServices.getUserById(id);
+		currentUser.setStreetName(user.getStreetName());
+		currentUser.setCity(user.getCity());
+		currentUser.setState(user.getState());
+		currentUser.setZipcode(user.getZipcode());
+		User updatedUser = userDao.save(currentUser);
+		return ResponseEntity.ok(updatedUser);
+	}
+	/*
 	*Delete User from api
 	*/
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/deleteuser/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
 		User user = this.userServices.getUserById(id);
 		this.userServices.deleteUser(user);

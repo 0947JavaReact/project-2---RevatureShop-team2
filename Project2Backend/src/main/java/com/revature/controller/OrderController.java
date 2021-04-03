@@ -8,9 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,7 @@ import com.revature.services.UserServices;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/order")
 @AllArgsConstructor(onConstructor=@__({@Autowired}))
@@ -70,10 +73,11 @@ public class OrderController {
 	}
 	@GetMapping("/user/{createrId}")
 	public ResponseEntity<List<Order>> getOrderByCreator(@PathVariable("createrId")String creator_id){
-		if(orderServ.getAllCreatorOrders(Integer.parseInt(creator_id)) == null) {
+		List<Order> currentOrders = orderServ.getAllCreatorOrders(uServ.getUserById(Integer.parseInt(creator_id)));
+		if(currentOrders == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(orderServ.getAllCreatorOrders(Integer.parseInt(creator_id)),HttpStatus.OK);
+		return new ResponseEntity<>(currentOrders,HttpStatus.OK);
 	}
 	@GetMapping("/all")
 	public ResponseEntity<List<Order>> getAllOrders(){
@@ -81,6 +85,14 @@ public class OrderController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>(orderServ.getAllOrders(),HttpStatus.OK);
+	}
+	
+	@PutMapping("/update/{order_id}")
+	public ResponseEntity<Order> updateUser(@PathVariable int order_id,@RequestBody LinkedHashMap<String, Object> fMap){
+		Order order = orderServ.getOrderById(order_id);
+		order.setDeliverTime(LocalDateTime.now() );
+		orderServ.insertOrder(order);
+		return ResponseEntity.ok(order);
 	}
 	
 }

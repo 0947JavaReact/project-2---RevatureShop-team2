@@ -11,10 +11,13 @@ class OrderServices{
             return axios.post(ORDER_API_BASE_URL , order);
         }
         getOrderByUserId(userID){
-            return axios.get(ORDER_API_BASE_URL + '/' + userId);
+            return axios.get(ORDER_API_BASE_URL + '/user/' + userID);
         }
         getOrderByOrderId(orderID){
-            return axios.get(ORDER_API_BASE_URL + '/user/' + userId);
+            return axios.get(ORDER_API_BASE_URL + '/' + orderID);
+        }
+        udpateByOrderId(orderID){
+            return axios.put(ORDER_API_BASE_URL + '/update/' + orderID);
         }
 }
 

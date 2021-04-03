@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_API_BASE_URL = " ";
+const USER_API_BASE_URL = "http://localhost:9025/users";
 
 {/* User Services! */ }
 
@@ -34,6 +34,10 @@ class UserServices {
     }
     // Update user
     updateUser(user, userId){
+        return axios.put(USER_API_BASE_URL + '/' + userId, user);
+    }
+     // Update user address
+     updateUserAddress(user, userId){
         return axios.put(USER_API_BASE_URL + '/' + userId, user);
     }
     // Delete user

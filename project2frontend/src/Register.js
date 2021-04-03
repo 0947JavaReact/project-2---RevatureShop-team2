@@ -16,6 +16,10 @@ class Register extends Component {
             lastName: '',
             username: '',
             emailId: '',
+            streetname: '',
+            city: '',
+            state: '',
+            zipcode: '',
             password: '',
             userType: ''
         };
@@ -25,6 +29,10 @@ class Register extends Component {
         this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
+        this.changeStreetHandler = this.changeStreetHandler.bind(this);
+        this.changeCityHandler = this.changeCityHandler.bind(this);
+        this.changeStateHandler = this.changeStateHandler.bind(this);
+        this.changeZipCodeHandler = this.changeZipCodeHandler.bind(this);
         this.changeUserHandler = this.changeUserHandler.bind(this);
 
     }
@@ -37,6 +45,10 @@ class Register extends Component {
             lastName: this.state.lastName,
             username: this.state.username,
             email: this.state.emailId,
+            streetname: this.state.streetname,
+            city: this.state.city,
+            state:this.state.state,
+            zipcode: this.state.zipcode,
             password: this.state.password,
             userType: this.state.userType === '' ? 'CUSTOMER' : this.state.userType
         };
@@ -65,6 +77,18 @@ class Register extends Component {
     }
     changePasswordHandler = (event) => {
         this.setState({ password: event.target.value });
+    }
+    changeStreetHandler = (event) => {
+        this.setState({ streetname: event.target.value });
+    }
+    changeCityHandler = (event) => {
+        this.setState({ city: event.target.value });
+    }
+    changeStateHandler = (event) => {
+        this.setState({ state: event.target.value });
+    }
+    changeZipCodeHandler = (event) => {
+        this.setState({ zipcode: event.target.value });
     }
     changeUserHandler = (event) => {
         this.setState({ userType: event.target.value });
@@ -97,6 +121,22 @@ class Register extends Component {
                         <h5>Enter your email</h5>
                         <input type='text' placeholder="Email Address" name="emailId" className="form-control"
                             value={this.state.emailId} onChange={this.changeEmailHandler} />
+
+                        <h5>Enter your street address</h5>
+                        <input type='text' placeholder="Street Address" name="streetname" className="form-control"
+                            value={this.state.statename} onChange={this.changeStreetHandler} />
+
+                        <h5>Enter your city</h5>
+                        <input type='text' placeholder="City" name="city" className="form-control"
+                            value={this.state.city} onChange={this.changeCityHandler} />
+
+                        <h5>Enter your state</h5>
+                        <input type='text' placeholder="State" name="state" className="form-control"
+                            value={this.state.state} onChange={this.changeStateHandler} />
+
+                        <h5>Enter your zip code</h5>
+                        <input type='text' placeholder="Zip code" name="zipcode" className="form-control"
+                            value={this.state.zipcode} onChange={this.changeZipCodeHandler} />
 
                         <h5>Enter a password</h5>
                         <input type='text' placeholder="Password" name="password" className="form-control"

@@ -32,17 +32,38 @@ public class User {
 		CUSTOMER, DRIVER, MANAGER
 	}
 	@Id
-	@Column(name="user_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
-	@Column(name="username", unique=true, nullable=false)
+
+	@Column(name = "username", unique = true, nullable = false)
 	private String username;
-	@Column(name="pass", nullable=false)
+
+	@Column(name = "password", nullable = false)
 	private String password;
-	@Column(name="email", unique=true)
+
+	@Column(name = "firstname")
+	private String firstName;
+
+	@Column(name = "lastname")
+	private String lastName;
+
+	@Column(name = "email", unique = true)
 	private String email;
-	@OneToMany(mappedBy="creator",fetch=FetchType.LAZY)
+
+	@Column(name = "streetname")
+	private String streetName;
 	
+	@Column(name = "city")
+	private String city;
+
+	@Column(name = "state")
+	private String state;
+
+	@Column(name = "zipcode")
+	private int zipcode;
+	
+	@OneToMany(mappedBy="creator",fetch=FetchType.LAZY)
 	private List<Order> orders;
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)

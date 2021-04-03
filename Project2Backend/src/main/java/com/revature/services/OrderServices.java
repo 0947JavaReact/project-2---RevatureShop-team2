@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Order;
+import com.revature.model.User;
 import com.revature.repository.OrderDao;
 import com.revature.repository.UserDao;
 
@@ -31,8 +32,8 @@ public class OrderServices {
 		return orderDao.findAll();
 	}
 
-	public List<Order> getAllCreatorOrders(int creator_id) {
-		return orderDao.findByCreator(creator_id);
+	public List<Order> getAllCreatorOrders(User creator) {
+		return orderDao.findByCreator(creator);
 	}
 
 	public void insertOrder(Order order) {

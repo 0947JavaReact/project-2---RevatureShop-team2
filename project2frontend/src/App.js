@@ -8,7 +8,8 @@ import ChangeInformation from './Components/ChangeInformation';
 import CustomerInformation from './Components/CustomerInformation'
 import ShowItems from './Store'
 import NewItem from './AddItem';
-
+import Logout from './Logout'
+import ResetPassword from './ResetPassword'
 function App() {
   return (
     <Router>
