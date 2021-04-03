@@ -109,6 +109,8 @@ public class UserController {
 	@PutMapping("/address/{id}")
 	public ResponseEntity<User> updateUserAddress(@PathVariable int id, @RequestBody User user){
 		User currentUser = this.userServices.getUserById(id);
+		currentUser.setFirstName(user.getFirstName());
+		currentUser.setLastName(user.getLastName());
 		currentUser.setStreetName(user.getStreetName());
 		currentUser.setCity(user.getCity());
 		currentUser.setState(user.getState());

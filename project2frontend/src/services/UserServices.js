@@ -38,7 +38,7 @@ class UserServices {
     }
      // Update user address
      updateUserAddress(user, userId){
-        return axios.put(USER_API_BASE_URL + '/' + userId, user);
+        return axios.put(USER_API_BASE_URL + '/address/' + userId, user);
     }
     // Delete user
     deleteUser(userId){

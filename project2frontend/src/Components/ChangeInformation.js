@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import './ChangeInformation.css';
 import USPS from 'usps-webtools'
-
+import UserServices from '../services/UserServices' 
 
 
 //allow user to change firstname, lastname, street address, city, state, zipcode
 //address will be validated, if not 
 function ChangeInformation(props){
-    let [user, setUser] = useState({username:'testUser',password:'testPass',firstName:'testFirst',lastName:'testLast',email:'test@test.com',userType:1,streetName:'11730 Plaza America Dr',city:'reston',state:'VA',zipcode:'20190'});
+    let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:'',userId:''});
   
+    useEffect(() => {
+        const fetchData = async () => {
+            UserServices.getUserById(6).then(res => {
+            setUser({username:res.data.username,password:res.data.password,firstName:res.data.firstName,lastName:res.data.lastName,email:res.data.email,streetName:res.data.streetName,city:res.data.city,state:res.data.state,zipcode:res.data.zipcode,userId:res.data.userId})
+       })}
+        fetchData();
+        },[])
 
     const usps = new USPS({
         server: 'http://production.shippingapis.com/ShippingAPI.dll',
@@ -32,6 +39,7 @@ function ChangeInformation(props){
             }
             else{
                 setUser({ ...user,streetName:address.street1,city:address.city,zipcode:address.zip,state:address.state}) 
+                UserServices.updateUserAddress(user,user.userId)
                 alert("User information updated correctly")
             }
           });
