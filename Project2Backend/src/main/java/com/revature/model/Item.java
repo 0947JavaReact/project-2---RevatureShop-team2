@@ -25,23 +25,19 @@ import lombok.ToString;
 @Table(name="items")
 public class Item {
 	
-//	public enum ItemType{
-//		Electronics, Books, Movies, Apparel
-//	}
-	
 	@Id
 	@Column(name="item_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ItemId;
+	
 	@Column(name="item_name", nullable=false)
 	private String name;
+	
 	@Column(name="price", nullable=false)
 	private double price;
+	
 	@Column(name="item_photo")
 	private byte[] photo;
-	
-//	@Column(name="item_type")
-//	private ItemType itemtype;
 	
 	public Item(String name, double price, byte[] photo) {
 		super();
@@ -50,6 +46,4 @@ public class Item {
 		this.photo = photo;
 		//this.itemtype = itemtype;
 	}
-	
-	
 }
