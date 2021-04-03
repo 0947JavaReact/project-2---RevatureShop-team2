@@ -38,7 +38,7 @@ public class Order {
 	@Column(name="ordernumber")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int orderNumber;
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders"})
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders", "userCart"})
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="creator_FK")
 	private User creator;

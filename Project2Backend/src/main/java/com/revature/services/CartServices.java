@@ -18,7 +18,7 @@ public class CartServices {
 
 	private CartDao cartDao;
 	
-	public Cart findByCartCreator(int creator) {
+	public Cart findByCartCreator(User creator) {
 		return cartDao.findByCartCreator(creator); 
 	}
 	

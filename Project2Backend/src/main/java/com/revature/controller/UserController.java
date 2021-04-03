@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.security.SecureRandom;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.model.User;
+import com.revature.repository.UserDao;
 import com.revature.services.UserServices;
 
 import lombok.AllArgsConstructor;
@@ -28,63 +31,121 @@ import lombok.NoArgsConstructor;
 public class UserController {
 
 	private UserServices userServices;
-	
-	// Get all Users
-		@GetMapping("/users")
-		public List<User> getAllUsers() {
-			return this.userServices.getAll();
-		}
+	private UserDao userDao;
 
-		// Create User rest api
-		@PostMapping("/register")
-        public User createUser(@RequestBody LinkedHashMap<String,String> fMap) {
-            System.out.println(fMap);
-            User user = new User(fMap.get("username"),fMap.get("password"),fMap.get("email"));
-            return this.userServices.insertUser(user);
-        }
+	/*
+	* Get all Users
+	*/
+	@GetMapping("/users")
+	public List<User> getAllUsers() {
+		return this.userServices.getAll();
+	}
 
-		@GetMapping("/user")
-		public ResponseEntity<?> getUserByLogin(@RequestParam String emailId, @RequestParam String password) {
-			User user = this.userServices.getEmailPass(emailId, password);
-			if (user == null) {
-				return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<>(user, HttpStatus.OK);
-		}
+	/*
+	* Create the User 
+	*/
+	@PostMapping()
+	public User createUser(@RequestBody User user) {
+		return this.userServices.insertUser(user);
+	}
 
-		// Get User by id rest api
-		@GetMapping("/users/{id}")
-		public ResponseEntity<User> getUserById(@PathVariable int id) {
-			if (this.userServices.getUserById(id) == null) {
-				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<>(this.userServices.getUserById(id), HttpStatus.OK);
+	/*
+	* Get the User by email and password to login
+	*/
+	@GetMapping("/user")
+	public ResponseEntity<?> getUserByLogin(@RequestParam String emailId, @RequestParam String password) {
+		User user = this.userServices.findByEmailAndPass(emailId, password);
+		if (user == null) {
+			return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
 		}
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
 
-		// Delete User from api
-		@DeleteMapping("/users/{id}")
-		public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
-			User user = this.userServices.getUserById(id);
-			this.userServices.deleteUser(user);
-			return new ResponseEntity<>("Resource Deleted", HttpStatus.GONE);
+	/*
+	* Get the User by id
+	*/
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable int id) {
+		if (this.userServices.getUserById(id) == null) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
+		return new ResponseEntity<>(this.userServices.getUserById(id), HttpStatus.OK);
+	}
+
+	/*
+	* Find the User by email
+	*/
+	@GetMapping("/reset/{email}")
+	public void findUserByEmail(@PathVariable String email) {
+		User user = this.userServices.getUserByEmail(email);
+		if (user == null) {
+			 System.out.println("User is null");
+		}
+		//Replace it with your gmail creds.
+		String from = "revatureshop"; // GMail user name (just the part before "@gmail.com")
+        String pass = "p4ssword123"; // GMail password
+		String[] to = { user.getEmail() };
+
+		int passwordLength = 5;
+		String newPassword = generateRandomPassword(passwordLength);
+        System.out.println(newPassword);
+
+        String subject = "Revature Shop: Password";
+        String body = "Your new password is " + newPassword +
+					 ". You will be able to change your password in the Revature Shop app.";
+		user.setPassword(newPassword);
+        userServices.sendFromGMail(from, pass, to, subject, body);
 		
-		@GetMapping("/reset/{email}")
-		public void findUserByEmail(@PathVariable String email) {
-			System.out.println("in reset email");
-			User user = this.userServices.getUserByEmail(email);
-			if (user == null) {
-				 System.out.println("User is null");
-			}
-			//Replace it with your gmail creds.
-			String from = "revatureshop"; // GMail user name (just the part before "@gmail.com")
-	        String pass = "p4ssword123"; // GMail password
-	        System.out.println("further in reset email");
-	        String[] to = { user.getEmail() }; // list of recipient email addresses
-	        System.out.println(to);
-	        String subject = "Reset Password";
-	        String body = "There will be a link to the password reset!";
-	        userServices.sendFromGMail(from, pass, to, subject, body);
-			
-		}
+	}
+
+	/*
+	*Update the User's Password
+	*/
+	@PutMapping("/user/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User userPassword){
+		User user = this.userServices.getUserById(id);
+		user.setPassword(userPassword.getPassword());		
+		User updatedUser = userDao.save(user);
+		return ResponseEntity.ok(updatedUser);
+	}
+
+	/*
+	*Update the User's address
+	*/
+	@PutMapping("/address/{id}")
+	public ResponseEntity<User> updateUserAddress(@PathVariable int id, @RequestBody User user){
+		User currentUser = this.userServices.getUserById(id);
+		currentUser.setStreetName(user.getStreetName());
+		currentUser.setCity(user.getCity());
+		currentUser.setState(user.getState());
+		currentUser.setZipcode(user.getZipcode());
+		User updatedUser = userDao.save(currentUser);
+		return ResponseEntity.ok(updatedUser);
+	}
+	/*
+	*Delete User from api
+	*/
+	@DeleteMapping("/deleteuser/{id}")
+	public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
+		User user = this.userServices.getUserById(id);
+		this.userServices.deleteUser(user);
+		return new ResponseEntity<>("Resource Deleted", HttpStatus.GONE);
+	}
+
+	 /*
+	 * Generates Random Password
+	 */
+	 public static String generateRandomPassword(int len){
+		 // ASCII range - alphanumeric (0-9, a-z, A-Z)
+		 final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		 SecureRandom random = new SecureRandom();
+		 StringBuilder sb = new StringBuilder();
+		 // each iteration of loop choose a character randomly from the given ASCII range
+		 // and append it to StringBuilder instance
+		 for (int i = 0; i < len; i++) {
+			 int randomIndex = random.nextInt(chars.length());
+			 sb.append(chars.charAt(randomIndex));
+		 }
+		 return sb.toString();
+	 }
 }

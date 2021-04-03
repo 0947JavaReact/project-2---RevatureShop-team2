@@ -17,25 +17,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemServices {
 
-	private ItemDao iDao;
-
+private ItemDao iDao;
+	
 	public Item getItemByName(String name) {
 		Item item = iDao.findByName(name);
-		if (item == null) {
+		if(item==null) {
 			return null;
 		}
 		return item;
 	}
-
-	public List<Item> getAllItems() {
+	
+	public List<Item> getAllItems(){
 		return iDao.findAll();
 	}
-
+	
 	public void insertItem(Item item) {
 		iDao.save(item);
 	}
-
+	
 	public void deleteItem(Item item) {
+		
 		iDao.delete(item);
+	}
+	
+	public void updateItem(Item item) {
+		iDao.save(item);
 	}
 }

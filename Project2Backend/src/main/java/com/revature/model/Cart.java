@@ -9,9 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +38,9 @@ public class Cart {
 	private List<Item> items;
 	@Column(name="cart_total")
 	private double amount;
-	@OneToOne(mappedBy="userCart")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders", "userCart"})
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="creator_fk")
 	private User cartCreator;
 	
 	public Cart(List<Item> items, double amount, User cartCreator) {
@@ -44,5 +49,5 @@ public class Cart {
 		this.amount = amount;
 		this.cartCreator = cartCreator;
 	}
-
+	
 }

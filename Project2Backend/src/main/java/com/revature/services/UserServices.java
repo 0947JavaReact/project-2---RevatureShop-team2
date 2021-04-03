@@ -27,7 +27,7 @@ public class UserServices {
 	
 	private UserDao userDao;
 
-	public User getEmailPass(String email, String password) {
+	public User findByEmailAndPass(String email, String password) {
 		User user = this.userDao.findByEmailAndPassword(email, password);
 		if (user == null) {
 			return null;

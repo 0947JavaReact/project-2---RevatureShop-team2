@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.model.Order;
+import com.revature.model.User;
 import com.revature.repository.OrderDao;
 
 import lombok.AllArgsConstructor;
@@ -19,8 +20,8 @@ public class OrderServices {
 	private OrderDao orderDao;
 
 	public Order getOrderById(int order_id) {
-		Order order = orderDao.findById(order_id);
-		if (order == null) {
+		Order order =  orderDao.findById(order_id);
+		if(order==null) {
 			return null;
 		}
 		return order;
@@ -30,19 +31,19 @@ public class OrderServices {
 		return orderDao.findAll();
 	}
 
-	public List<Order> getAllCreatorOrders(int creator_id) {
-		return orderDao.findByCreator(creator_id);
+	public List<Order> getAllCreatorOrders(User creator) {
+		return orderDao.findByCreator(creator);
 	}
 
 	public void insertOrder(Order order) {
-		orderDao.save(order);
+			orderDao.save(order);
 	}
 
 	public void deleteOrder(Order order) {
-		orderDao.delete(order);
+			orderDao.delete(order);
 	}
 
 	public void updateOrder(Order order) {
-		orderDao.save(order);
+			orderDao.save(order);
 	}
 }
