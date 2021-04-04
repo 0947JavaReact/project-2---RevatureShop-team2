@@ -1,5 +1,4 @@
 import { connect } from "react-redux"
-import PropTypes from 'prop-types';
 import React, {useState,useEffect } from 'react';
 import {fetchOrders} from '../actions/orderActions'
 import { useDispatch, useSelector } from 'react-redux';

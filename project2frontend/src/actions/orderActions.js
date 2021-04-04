@@ -1,6 +1,6 @@
 import {NEW_ORDER,FETCH_ORDERS} from './types'
 import OrderServices from '../services/OrderServices'
-import UserServices from '../services/UserServices'
+
 
 
 export const newOrder = (orderData) =>dispatch => {
@@ -8,7 +8,7 @@ export const newOrder = (orderData) =>dispatch => {
    
     dispatch({
         type: NEW_ORDER,
-        payload:  UserServices.getUserById(orderData.creator)
+        payload: orderData
       })
 }
 

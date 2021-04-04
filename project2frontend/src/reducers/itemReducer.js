@@ -5,6 +5,18 @@ const initialState = {
     items:[]
 }
 
-export default function(state = initialState, action){
-    return state;
-}
+export default function(state = initialState, action) {
+    switch (action.type) {
+        case NEW_ITEM:
+            return {
+                ...state
+            };
+        case FETCH_ITEMS:
+            return {
+            ...state,
+            items: action.payload 
+            }
+      default:
+        return state;
+    }
+  }

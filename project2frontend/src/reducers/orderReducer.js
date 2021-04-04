@@ -1,3 +1,4 @@
+  
 import {NEW_ORDER,FETCH_ORDERS} from '../actions/types'
 
 const initialState = {
@@ -9,7 +10,7 @@ export default function(state = initialState, action) {
         case NEW_ORDER:
             return {
                 ...state,
-                Loggeduser:action.payload
+                orders:action.payload
             };
         case FETCH_ORDERS:
                 return {
@@ -20,4 +21,5 @@ export default function(state = initialState, action) {
         return state;
     }
   }
+     
      

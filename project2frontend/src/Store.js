@@ -2,20 +2,17 @@ import React, {useState,useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Logo from './logo.jpg';
 import './Store.css';
-import ItemServices from './services/ItemService'
+import { connect } from "react-redux"
+import {fetchItems} from './actions/itemActions'
+import { useDispatch, useSelector } from 'react-redux';
 
-//const ShowItems = (props)=>{
 
 function ShowItems() {
-    let [items,setItems] = useState([]) 
+    const currentItems = useSelector(state => state.item.items)
+    const dispatch = useDispatch();
    
     useEffect(() => {
-        const fetchData = async () => {
-          ItemServices.getItems().then(res => {
-          let data = res.data
-          setItems(data) 
-       })}
-        fetchData();
+         dispatch(fetchItems())
         },[])
 
     return (
@@ -32,7 +29,7 @@ function ShowItems() {
                     </tr>
                     <tbody>
                         {
-                            items.map(function(currItem){
+                            currentItems.map(function(currItem){
                             return(
                                 <tr id={currItem.itemId}>
                                     <td>null</td>
@@ -55,4 +52,4 @@ function ShowItems() {
         </div>
     )
 }
-export default ShowItems;
+export default connect(null,{fetchItems})(ShowItems);
