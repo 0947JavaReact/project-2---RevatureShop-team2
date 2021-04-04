@@ -70,17 +70,23 @@ public class ItemController {
 //			}
 			item2.setPhoto(amazonClient.retrieveImage("image-coming-soon.png"));
 		} else {
-			item2.setPhoto(null);
+			//item2.setPhoto(null);
 			String imageString = amazonClient.uploadFile((MultipartFile) itemMap.get("photo"));
-			ImageRecovery ir = new ImageRecovery();
-			try {
-				//ir.recoverImageFromUrl(imageString);
-				item2.setPhoto(ir.recoverImageFromUrl(imageString));
-				amazonClient.retrieveImage((String) itemMap.get("photo"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			String parsedForACRetrieval = imageString.split("p2revstoreimages/")[1];
+			
+			item2.setPhoto(amazonClient.retrieveImage(parsedForACRetrieval));
+			//			ImageRecovery ir = new ImageRecovery();
+//			try {
+//				//ir.recoverImageFromUrl(imageString);
+//				item2.setPhoto(ir.recoverImageFromUrl(imageString));
+//				amazonClient.retrieveImage((String) itemMap.get("photo"));
+//				//uploadFile returns String fileUrl... so just parse this to be everything after https://s3.us-west-1.amazonaws.com/p2revstoreimages/
+//				
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 		//item2.setPhoto(null);
 		item2.setPrice((Integer) itemMap.get("price"));
