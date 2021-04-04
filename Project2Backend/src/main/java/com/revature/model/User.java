@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -70,14 +72,30 @@ public class User {
 	@JoinColumn(name="cart_fk")
 	private Cart currentCart;
 	
-	public User(String username, String password, String email, List<Order> orders, Cart currentCart) {
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "user_type")
+	private UserType userType;
+
+
+	public User(String username, String password, String firstName, String lastName, String email, String streetName,
+			String city, String state, int zipcode, List<Order> orders, Cart currentCart, UserType userType) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
+		this.streetName = streetName;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
 		this.orders = orders;
 		this.currentCart = currentCart;
+		this.userType = userType;
 	}
+	
+
 
 	
 }
