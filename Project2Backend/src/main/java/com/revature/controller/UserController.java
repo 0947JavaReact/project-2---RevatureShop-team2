@@ -6,6 +6,11 @@ import java.util.List;
 import com.revature.repository.UserDao;
 import com.revature.model.User;
 import com.revature.services.UserServices;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +23,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/user")
+@AllArgsConstructor(onConstructor=@__({@Autowired}))
+@NoArgsConstructor
 public class UserController {
+	
 	private UserServices userServices;
 	private UserDao userDao;
 
