@@ -43,6 +43,7 @@ public class UserController {
 	*/
 	@PostMapping()
 	public User createUser(@RequestBody User user) {
+		System.out.println(user);
 		return this.userServices.insertUser(user);
 	}
 
@@ -50,7 +51,7 @@ public class UserController {
 	* Get the User by email and password to login
 	*/
 	@GetMapping("/user")
-	public ResponseEntity<?> getUserByLogin(@RequestParam String emailId, @RequestParam String password) {
+	public ResponseEntity<?> getUserByLogin(@RequestParam(name = "emailId") String emailId, @RequestParam(name = "password") String password) {
 		User user = this.userServices.findByEmailAndPass(emailId, password);
 		if (user == null) {
 			return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
