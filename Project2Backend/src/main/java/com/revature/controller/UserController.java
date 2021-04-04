@@ -6,8 +6,6 @@ import java.util.List;
 import com.revature.repository.UserDao;
 import com.revature.model.User;
 import com.revature.services.UserServices;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +17,9 @@ import org.springframework.web.bind.annotation.*;
 */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
-
-	@Autowired
 	private UserServices userServices;
-	@Autowired
 	private UserDao userDao;
 
 	/*
@@ -95,7 +90,7 @@ public class UserController {
 	/*
 	*Update the User's Password
 	*/
-	@PutMapping("/user/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User userPassword){
 		User user = this.userServices.getUserById(id);
 		user.setPassword(userPassword.getPassword());		
