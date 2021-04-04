@@ -1,18 +1,16 @@
+import { connect } from "react-redux"
+import PropTypes from 'prop-types';
 import React, {useState,useEffect } from 'react';
-import OrderServices from '../services/OrderServices'
-
+import {fetchOrders} from '../actions/orderActions'
+import { useDispatch, useSelector } from 'react-redux';
 //need to display order id, products, totalPrice statusShipping(either delivered or in progress), 
 function CustomerOrders(props) {
-   let [orders,setOrders] = useState([]) 
-
-   useEffect(() => {
-    const fetchData = async () => {
-      OrderServices.getOrderByUserId(1).then(res => {
-      let data = res.data
-      setOrders(data) 
-   })}
-    fetchData();
-    },[])
+  
+  const currentOrders = useSelector(state => state.order.orders)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchOrders(6));
+  }, [])
     return(
     <div>
       
@@ -27,7 +25,7 @@ function CustomerOrders(props) {
         </tr>
         <tbody>
             {
-              orders.map(function(currOrder){
+              currentOrders.map(function(currOrder){
                   return(
                     <tr>
                       <td>{currOrder.orderNumber}</td>
@@ -43,4 +41,5 @@ function CustomerOrders(props) {
     </div>
       )
     }
-export default CustomerOrders
+
+export default connect(null,{fetchOrders})(CustomerOrders);

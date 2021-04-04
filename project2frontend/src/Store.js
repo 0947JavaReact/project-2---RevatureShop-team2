@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useState,useEffect } from 'react';
 import { Link } from "react-router-dom";
 import Logo from './logo.jpg';
 import './Store.css';
-
+import ItemServices from './services/ItemService'
 
 //const ShowItems = (props)=>{
 
 function ShowItems() {
-    
+    let [items,setItems] = useState([]) 
+   
+    useEffect(() => {
+        const fetchData = async () => {
+          ItemServices.getItems().then(res => {
+          let data = res.data
+          setItems(data) 
+       })}
+        fetchData();
+        },[])
+
     return (
         <div className="store_catalogue">
             {/* <Link to='./store_catalogue'>
@@ -15,26 +25,26 @@ function ShowItems() {
             <div className='store_container'>
                 <table>
                     <tr>
-                        <th>Image of Product</th>
-                        <th>Name of Product</th>
-                        <th>Price</th>
-                        <th>Add to Cart(with quantity)</th>
-                        <th>Quantity</th>
+                        <th>Image of Product&nbsp;&nbsp;</th>
+                        <th>Name of Product&nbsp;&nbsp;</th>
+                        <th>Price&nbsp;&nbsp;</th>
+                        <th>Add to Cart&nbsp;&nbsp;</th>  
                     </tr>
-                    {/* //for each item, add the row:
-                    React.createElement("tr",null,null);
-                    React.createElement("td",img,)
-                    React.createElement("td",name,)
-                    React.createElement("td",description,)
-                    React.createElement("td",price,)
-                    React.createElement("td",quantity,) */}
-                    {/* <tr>
-                        <td>{props.img}</td>
-                        <td>{props.name}</td>
-                        <td>{props.description}</td>
-                        <td>{props.price}</td>
-                        <td>**counter**</td>
-                    </tr> */}
+                    <tbody>
+                        {
+                            items.map(function(currItem){
+                            return(
+                                <tr id={currItem.itemId}>
+                                    <td>null</td>
+                                    <td>{currItem.name}</td>
+                                    <td>{currItem.price}</td>
+                                    <td>add to cart button calls cart Services and updates user cart</td>
+                                </tr>
+
+                            )
+                            })
+                        }
+                    </tbody>
                 </table>
             </div>
             <div>

@@ -7,8 +7,8 @@ class OrderServices{
         getOrders(){
             return axios.get(ORDER_API_BASE_URL+'/all');
         }
-        createUser(order){
-            return axios.post(ORDER_API_BASE_URL , order);
+        createOrder(order){
+            return axios.post(ORDER_API_BASE_URL +'/', order);
         }
         getOrderByUserId(userID){
             return axios.get(ORDER_API_BASE_URL + '/user/' + userID);

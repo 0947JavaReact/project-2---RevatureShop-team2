@@ -10,8 +10,12 @@ import ShowItems from './Store'
 import NewItem from './AddItem';
 import Logout from './Logout'
 import ResetPassword from './ResetPassword'
+import { Provider } from 'react-redux';
+import store from './reduxStore';
+
 function App() {
   return (
+    <Provider store = {store}>
     <Router>
       <div className="app">
         <Switch>
@@ -51,6 +55,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </Provider>
   );
 }
 
