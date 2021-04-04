@@ -94,8 +94,34 @@ public class User {
 		this.currentCart = currentCart;
 		this.userType = userType;
 	}
+
+
+	public User(int userId, String username, String password, String firstName, String lastName, String email,
+			String streetName, String city, String state, int zipcode, List<Order> orders, Cart currentCart) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.streetName = streetName;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.orders = orders;
+		this.currentCart = currentCart;
+	}
+
+
+	public User(String username, String password, String email, List<Order> orders, Cart currentCart) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.orders = orders;
+		this.currentCart = currentCart;
+	}
 	
-
-
 	
 }
