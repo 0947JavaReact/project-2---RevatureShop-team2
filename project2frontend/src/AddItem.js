@@ -19,12 +19,16 @@ function NewItem(props) {
     const onChange = (e) => {
         //formData.append('imageUpload',item.photo);
         setItem({ ...item,[e.target.name]: e.target.value}) 
+        
     }
     const addimage = (e) => {
         let formData = new FormData();
-        formData.append('imageUpload',item.photo);
+        //formData.append('imageUpload',item.photo);
         console.log(formData);
-        setItem({ ...item,[item.photo]: formData});
+        //formData.append('imageUpload',item.photo);
+        // setItem({ ...item,["item.photo"]: formData.append('imageUpload',item.photo)});
+        setItem({ ...item,["item.photo"]: formData.append('imageUpload',item.photo)});
+        console.log(formData);
     }
 
     function submitItem(e) {
@@ -49,7 +53,7 @@ function NewItem(props) {
                     <div className="testingImage">
                         <form name="imageUpload" encType="multipart/form-data" method="post">
                             <input name="photo" value={item.photo} onChange={addimage} type="file" name="photo" id="imageUpload"></input>
-                            <button type="submit">Upload Image</button>
+                            {/* <button type="submit">Upload Image</button> */}
                         </form>
                     </div>
                     {/* <h5>Item Image</h5>
