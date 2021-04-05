@@ -40,7 +40,6 @@ function ShowItems() {
                                     <td><img src={photoString}/></td>
                                     <td>{currItem.name}</td>
                                     <td>{currItem.price}</td>
-<<<<<<< HEAD
                                     <td><button onClick = { () => axios.post("http://localhost:9025/cart/add", {
         userId : loggedUser.userId, 
         item : [{
@@ -49,10 +48,6 @@ function ShowItems() {
             itemId : currItem.itemId
         }]
     })}>Add to Cart</button></td>
-=======
-                                    <td><button>Add to Cart</button></td>
-                                    {/* <td>add to cart button calls cart Services and updates user cart</td> */}
->>>>>>> 0aae443e9467cbd290e58355f7ac078e02ea0114
                                 </tr>
 
                             )
