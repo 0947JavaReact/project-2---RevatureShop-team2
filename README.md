@@ -2,7 +2,7 @@
 
 ## About:
 
-Online store where users can purchase items. Once purchased and delivered, users and delivery drivers can post pictures of product(s) delivered.
+Online store where users can view all items (and an image associated with each item) in the store, add those items to a cart, and then purchase items. Users can register an account, login with said account, recover a forgotten password, and update the account if needed. Users are also able to provide a mailing address to deliver the items which will be verified with the USPS API. A manager can add new items to the cart by providing an item name, price, and uploading an image of the item, all of which will then be updated in the store.
 
 ## Overview:
 
@@ -61,6 +61,30 @@ Cart:
 - Mockito
 - Axios 0.21.1
 - NodeJs 14.16.0
+
+## Getting Started:
+
+#### Step 1: Clone this repository
+
+`git clone https://github.com/0947JavaReact/project-2---RevatureShop-team2.git`
+
+#### Step 2a: Install Node.JS with npm install if you don't already have it
+
+Instructions can be found [here](https://phoenixnap.com/kb/install-node-js-npm-on-windows).
+
+#### Step 2: Open `project-2---RevatureShop-team2/tree/main/project2frontend` with an IDE (Visual Studio Code is our preference) and install dependencies:
+
+`npm install react`
+`npm install react-redux`
+`npm install react-router-dom`
+`npm install react-scripts`
+`npm install axios`
+`npm install redux-thunk`
+
+### Front End
+
+
+### Back End
 
 
 ## Contributors:
