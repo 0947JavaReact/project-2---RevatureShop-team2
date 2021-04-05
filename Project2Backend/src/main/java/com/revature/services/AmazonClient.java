@@ -60,8 +60,7 @@ public class AmazonClient {
         return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
     }
     private void uploadFileTos3bucket(String fileName, File file) {
-//        s3client.putObject(new PutObjectRequest(bucketName, fileName, file)
-//                .withCannedAcl(CannedAccessControlList.PublicRead));
+
     	s3client.putObject(new PutObjectRequest("p2revstoreimages", fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     	
@@ -94,8 +93,7 @@ public class AmazonClient {
     	S3ObjectInputStream inputStream = s3object.getObjectContent();
     	
     	ByteArrayOutputStream output = new ByteArrayOutputStream();
-    	//FileUtils.copyInputStreamToFile(inputStream, new File("/Users/user/Desktop/hello.txt"));
-    	//return null;
+    	
     	int n = 0;
         byte [] buffer = new byte[ 1024 ];
         try {
