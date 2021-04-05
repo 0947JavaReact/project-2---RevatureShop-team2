@@ -30,12 +30,14 @@ function ShowItems() {
                     <tbody>
                         {
                             currentItems.map(function(currItem){
+                                let photoString = "data:image/png;base64," + currItem.photo;
                             return(
                                 <tr id={currItem.itemId}>
-                                    <td>null</td>
+                                    <td><img src={photoString}/></td>
                                     <td>{currItem.name}</td>
                                     <td>{currItem.price}</td>
-                                    <td>add to cart button calls cart Services and updates user cart</td>
+                                    <td><button>Add to Cart</button></td>
+                                    {/* <td>add to cart button calls cart Services and updates user cart</td> */}
                                 </tr>
 
                             )
