@@ -44,6 +44,6 @@ public class Item {
 		this.name = name;
 		this.price = price;
 		this.photo = photo;
-		//this.itemtype = itemtype;
+		
 	}
 }
