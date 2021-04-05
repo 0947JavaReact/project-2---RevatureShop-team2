@@ -24,6 +24,9 @@ class UserServices {
     }
     // Get user's email and password to login
     getUserLogin(emailId, password){
+        let user = axios.get(USER_API_BASE_URL+"/user/" + '?emailId=' + emailId+'&password='+password).then((response) => {
+            localStorage.setItem("user", JSON.stringify(response.data))
+          });
         return axios.get(USER_API_BASE_URL+"/user/" + '?emailId=' + emailId+'&password='+password)
     }
     // Update user
@@ -37,6 +40,9 @@ class UserServices {
     // Delete user
     deleteUser(userId){
         return axios.delete(USER_API_BASE_URL + '/' + userId);
+    }
+    resetEmail(emailId){
+        return axios.get(USER_API_BASE_URL + '/reset/' + emailId);
     }
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import * as ReactBootstrap from 'react-bootstrap';
+
 import './item.css';
-import logo from './img.png'
 import ItemButton from "./itembutton";
 
 function Item({id, name, image, price}) {
@@ -16,7 +15,7 @@ function Item({id, name, image, price}) {
                 </p>
             </div>
 
-            <img src ={logo} alt=""/>
+           
             <button>Add to Cart</button>
 
         </div>

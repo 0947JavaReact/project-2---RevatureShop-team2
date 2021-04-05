@@ -13,6 +13,7 @@ import ResetPassword from './ResetPassword'
 import { Provider } from 'react-redux';
 import store from './reduxStore';
 import Header from './header'
+import Checkout from './Checkout';
 
 function App() {
   return (
@@ -21,11 +22,9 @@ function App() {
       <Header />
       <div className="app">
         <Switch>
-
           <Route path="/forgot">
             <ForgotPassword />
           </Route>
-
           <Route path="/register">
             <Register />
           </Route>
@@ -38,22 +37,21 @@ function App() {
           <Route path="/ChangeInformation">
             <ChangeInformation />  
           </Route> 
-
           <Route path ="/CustomerInformation">
               <CustomerInformation />
           </Route>
           <Route path="/store_catalogue">
             <ShowItems/>
           </Route>
-
           <Route path="/add_new_item">
             <NewItem/>
           </Route>
-
+          <Route path="/cart">
+            <Checkout />
+          </Route>
           <Route path="/">
             <Login />
           </Route>
-
         </Switch>
       </div>
     </Router>

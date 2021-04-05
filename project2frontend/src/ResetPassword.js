@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UserServices from './services/UserServices'
 import './ResetPassword.css';
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import Logo from './logo.jpg';
 
 {/* Reset Password! */ }
@@ -33,6 +33,7 @@ class ResetPassword extends Component {
         UserServices.updateUser(user, this.state.id).then( res => {
             this.props.history.push('/login');
         });
+        
     }
     
     changePasswordHandler = (event) => {
@@ -70,4 +71,4 @@ class ResetPassword extends Component {
     }
 }
 
-export default ResetPassword;
+export default withRouter(ResetPassword);

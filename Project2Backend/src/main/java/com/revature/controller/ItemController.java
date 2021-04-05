@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,13 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.revature.model.Item;
 import com.revature.services.ItemServices;
 import com.revature.services.AmazonClient;
-//import com.revature.imageretrieval.ImageRecovery;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(value="/store")
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 //@AllArgsConstructor(onConstructor=@__({@Autowired}))
 @NoArgsConstructor
 
@@ -56,7 +53,7 @@ public class ItemController {
 		item2.setName((String) itemMap.get("name"));
 		//item2.setPhoto((byte[]) itemMap.get("photo"));
 		
-		if (itemMap.get("photo").equals("null") || itemMap.get("photo").equals(null)){
+		if (itemMap.get("photo")==(null) || itemMap.get("photo").equals("null") || itemMap.get("photo").equals("")){
 //			item2.setPhoto(null);
 			item2.setPhoto(amazonClient.retrieveImage("image-coming-soon.png"));
 		} else if (itemMap.get("photo").equals("default")) {
@@ -71,9 +68,12 @@ public class ItemController {
 			item2.setPhoto(amazonClient.retrieveImage("image-coming-soon.png"));
 		} else {
 			//item2.setPhoto(null);
+			System.out.println(itemMap.get("photo"));
 			String imageString = amazonClient.uploadFile((MultipartFile) itemMap.get("photo"));
 			
 			String parsedForACRetrieval = imageString.split("p2revstoreimages/")[1];
+			
+			System.out.println(parsedForACRetrieval);
 			
 			item2.setPhoto(amazonClient.retrieveImage(parsedForACRetrieval));
 			//			ImageRecovery ir = new ImageRecovery();
@@ -89,7 +89,7 @@ public class ItemController {
 //			}
 		}
 		//item2.setPhoto(null);
-		item2.setPrice((Integer) itemMap.get("price"));
+		item2.setPrice((Integer.parseInt((String) itemMap.get("price"))));
 		iServ.insertItem(item2);
 		//return this.iServ.insertItem(item);
 		System.out.println(item2);

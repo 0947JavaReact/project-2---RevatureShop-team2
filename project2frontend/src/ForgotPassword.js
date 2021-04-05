@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ForgotPassword.css';
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import Logo from './logo.jpg';
 import UserServices from './services/UserServices'
 
@@ -29,7 +29,7 @@ class ForgotPassword extends Component {
         console.log('Email => ' + JSON.stringify(email));
 
         {/* Calls User Services to send email to the user */ }
-        UserServices.getEmail(email)
+        UserServices.resetEmail(this.state.emailId)
             .then(res => {
                     console.log(res.email);
                     this.props.history.push('./login');
@@ -67,4 +67,4 @@ class ForgotPassword extends Component {
     }
 
 }
-export default ForgotPassword;
+export default withRouter(ForgotPassword);

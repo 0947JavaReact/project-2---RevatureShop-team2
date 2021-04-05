@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.model.Item;
+import com.revature.model.Cart;
 import com.revature.model.Order;
 import com.revature.model.User;
+import com.revature.services.CartServices;
+import com.revature.services.ItemServices;
 import com.revature.services.OrderServices;
 import com.revature.services.UserServices;
 
@@ -34,33 +36,22 @@ import lombok.NoArgsConstructor;
 public class OrderController {
 	private OrderServices orderServ;
 	private UserServices uServ;
+	private CartServices cartServ;
+	private ItemServices iServ;
 	
 	@PostMapping()
 	public ResponseEntity<String> insertOrder(@RequestBody LinkedHashMap<String, Object> fMap) {
-		ArrayList<Object> fromFMap = (ArrayList<Object>) fMap.get("order_items");
-		List<Item> itemList = new ArrayList<Item>();
 		byte[] photo = null;
-		
-		for(int i=0; i < fromFMap.size();  i++) {
-			LinkedHashMap<?,?> currItem = (LinkedHashMap<?, ?>) fromFMap.get(i);
-			int itemID = Integer.parseInt((String) currItem.get("item_id"));
-			Double itemPrice = Double.parseDouble((String) currItem.get("price"));
-			String itemName =  (String) currItem.get("item_name");
-			
-			System.out.println(itemID);
-			Item iTemp = new Item(itemID,itemName,itemPrice,photo);
-			itemList.add(iTemp);
-		}
-		
-		System.out.println(itemList);
 		
 		int userID = (Integer) fMap.get("creator");
 		User cUser = uServ.getUserById(userID);
-		double orderTotal = Double.parseDouble((String)fMap.get("total"));
+		Cart c = cartServ.findByCartCreator(cUser);
 	
-		Order order = new Order(cUser,orderTotal, itemList,photo, LocalDateTime.now()  );
-		
+		Order order = new Order(cUser,c.getAmount(), new ArrayList<>(c.getItems()),photo, LocalDateTime.now()  );
 		orderServ.insertOrder(order);
+		c.setItems(new ArrayList<>());
+		c.setAmount(0);
+		cartServ.insertCart(c);
 		return new ResponseEntity<>("Resource was Created", HttpStatus.CREATED);
 	}
 	

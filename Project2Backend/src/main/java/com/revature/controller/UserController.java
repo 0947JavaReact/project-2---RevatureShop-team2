@@ -92,6 +92,7 @@ public class UserController {
         String body = "Your new password is " + newPassword +
 					 ". You will be able to change your password in the Revature Shop app.";
 		user.setPassword(newPassword);
+		userDao.save(user);
         userServices.sendFromGMail(from, pass, to, subject, body);
 		
 	}

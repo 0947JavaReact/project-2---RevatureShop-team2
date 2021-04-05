@@ -3,6 +3,7 @@ import './header.css';
 import { Link,withRouter} from "react-router-dom";
 import Logo from "./logo.jpg";
 import Logout from './Logout';
+import Checkout from './Checkout';
 
 
 {/* Banner Nav! */}
@@ -35,7 +36,11 @@ function Header() {
                 </div>
             </Link>
 
-
+            <Link to ="/cart" className= "header__link">
+                <div className="header__optionBasket">
+                <span className = "header__optionLineOne">Cart</span>
+                </div>
+            </Link>
 
             {/* 3rd link */}
             <Link to ="/checkout" className= "header__link">
@@ -43,6 +48,8 @@ function Header() {
                     <Logout/>
                 </div>
             </Link>
+
+            
          </div>
 
 

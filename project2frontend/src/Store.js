@@ -1,4 +1,5 @@
 import React, {useState,useEffect } from 'react';
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import Logo from './logo.jpg';
 import './Store.css';
@@ -11,6 +12,8 @@ function ShowItems() {
     const currentItems = useSelector(state => state.item.items)
     const dispatch = useDispatch();
    
+    let loggedUser = JSON.parse(localStorage.getItem("user"))
+    console.log(loggedUser)
     useEffect(() => {
          dispatch(fetchItems())
         },[])
@@ -37,7 +40,14 @@ function ShowItems() {
                                     <td><img src={photoString}/></td>
                                     <td>{currItem.name}</td>
                                     <td>{currItem.price}</td>
-                                    <td>add to cart button calls cart Services and updates user cart</td>
+                                    <td><button onClick = { () => axios.post("http://localhost:9025/cart/add", {
+        userId : loggedUser.userId, 
+        item : [{
+            name : currItem.name,
+            price : currItem.price, 
+            itemId : currItem.itemId
+        }]
+    })}>Add to Cart</button></td>
                                 </tr>
 
                             )
