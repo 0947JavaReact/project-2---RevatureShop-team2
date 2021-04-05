@@ -35,10 +35,10 @@ function NewItem(props) {
                 <img className='logo_login'
                     src={Logo} alt='logo' />
             </Link>
-            <div className='new_item_container'>
-                <h1>Add a New Item to the Store!</h1>
+            <div className='new_item_container' >
+                <h1 style={{textAlign: 'center', alignSelf: 'stretch'}}>Add a New Item to the Store!</h1>
             
-                <form>
+                <form style={{justifyContent:'center', alignItems:'center'}}>
                     <h5>Item Image</h5>
                     <div className="testingImage">
                         <form name="imageUpload" encType="multipart/form-data" method="post">
