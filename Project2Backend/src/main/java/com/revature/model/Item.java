@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,10 +29,13 @@ public class Item {
 	@Column(name="item_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ItemId;
+	
 	@Column(name="item_name", nullable=false)
 	private String name;
+	
 	@Column(name="price", nullable=false)
 	private double price;
+	
 	@Column(name="item_photo")
 	private byte[] photo;
 	
@@ -40,7 +44,6 @@ public class Item {
 		this.name = name;
 		this.price = price;
 		this.photo = photo;
+		//this.itemtype = itemtype;
 	}
-	
-	
 }

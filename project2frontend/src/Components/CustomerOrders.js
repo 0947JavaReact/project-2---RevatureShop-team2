@@ -1,9 +1,20 @@
-import React, {useState} from 'react';
+import { connect } from "react-redux"
+import React, {useState,useEffect } from 'react';
+import {fetchOrders} from '../actions/orderActions'
+import { useDispatch, useSelector } from 'react-redux';
 //need to display order id, products, totalPrice statusShipping(either delivered or in progress), 
 function CustomerOrders(props) {
-    
+  
+  const currentOrders = useSelector(state => state.order.orders)
+  const currentUser = useSelector(state => state.user.Loggeduser)
+  const dispatch = useDispatch();
+  useEffect(() => {
+
+    dispatch(fetchOrders(currentUser.userId));
+  }, [])
     return(
     <div>
+      
       <br />
       <p>Takes in orders(past and current) as list and displays</p>
       <table>
@@ -14,15 +25,22 @@ function CustomerOrders(props) {
           <th>Shipping Status    &nbsp; </th> 
         </tr>
         <tbody>
-            <tr>
-              <td>1 </td>
-              <td>testProduct</td>
-              <td>10</td>
-              <td>DELIVERED</td>
-            </tr>
+            {
+              currentOrders.map(function(currOrder){
+                  return(
+                    <tr>
+                      <td>{currOrder.orderNumber}</td>
+                    <td><ul>{currOrder.items.map(function(currItem){return( <li>{currItem.name}</li>)})}  </ul></td>
+                      <td>{currOrder.amount}</td>
+                      <td>{ (currOrder.deliverTime == null) ? 'In progress': currOrder.deliverTime}</td> 
+                    </tr>
+                  )
+              })
+            }
         </tbody>
       </table>
     </div>
       )
     }
-export default CustomerOrders
+
+export default connect(null,{fetchOrders})(CustomerOrders);

@@ -38,7 +38,7 @@ public class Cart {
 	private List<Item> items;
 	@Column(name="cart_total")
 	private double amount;
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders", "userCart"})
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders", "currentCart"})
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="creator_fk")
 	private User cartCreator;

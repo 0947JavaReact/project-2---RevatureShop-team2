@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -38,10 +39,14 @@ public class Order {
 	@Column(name="ordernumber")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int orderNumber;
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders", "userCart"})
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "orders"})
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="creator_FK")
 	private User creator;
+	
+	
+	
 	@Column(name="total", nullable=false)
 	private double amount;
 	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)

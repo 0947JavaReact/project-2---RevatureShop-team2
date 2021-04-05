@@ -1,12 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import CustomerOrders from './CustomerOrders';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom';
 import './CustomerInformation.css'
 
 function CustomerInformation(props){
-    let [user, setUser] = useState({username:'testUser',password:'testPass',firstName:'testFirst',lastName:'testLast',email:'test@test.com',userType:1,streetName:'11730 Plaza America Dr',city:'reston',state:'VA',zipcode:'20190'});
- 
+    let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:'',userId:''});
+    const currentUser = useSelector(state => state.user.Loggeduser)
+    useEffect(() => {
+       
+        setUser({username:currentUser.username,password:currentUser.password,firstName:currentUser.firstName,lastName:currentUser.lastName,email:currentUser.email,streetName:currentUser.streetName,city:currentUser.city,state:currentUser.state,zipcode:currentUser.zipcode,userId:currentUser.userId})
+        
+    },currentUser)
     return(
         <div >
             <div className="userInfo">
@@ -48,5 +54,4 @@ function CustomerInformation(props){
 
     )
 }
-
 export default CustomerInformation

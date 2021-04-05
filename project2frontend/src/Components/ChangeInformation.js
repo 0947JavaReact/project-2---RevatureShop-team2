@@ -1,4 +1,8 @@
-import React, {useState} from 'react';
+import { connect } from "react-redux"
+import React, {useState,useEffect } from 'react';
+import {changeUserInformation} from '../actions/userActions'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, withRouter } from 'react-router-dom';
 import './ChangeInformation.css';
 import USPS from 'usps-webtools'
 
@@ -7,9 +11,13 @@ import USPS from 'usps-webtools'
 //allow user to change firstname, lastname, street address, city, state, zipcode
 //address will be validated, if not 
 function ChangeInformation(props){
-    let [user, setUser] = useState({username:'testUser',password:'testPass',firstName:'testFirst',lastName:'testLast',email:'test@test.com',userType:1,streetName:'11730 Plaza America Dr',city:'reston',state:'VA',zipcode:'20190'});
-  
-
+   let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:'',userId:''});
+    const currentUser = useSelector(state => state.user.Loggeduser)
+    const dispatch = useDispatch();
+    const history = useHistory();
+    useEffect(() => {
+            setUser({username:currentUser.username,password:currentUser.password,firstName:currentUser.firstName,lastName:currentUser.lastName,email:currentUser.email,streetName:currentUser.streetName,city:currentUser.city,state:currentUser.state,zipcode:currentUser.zipcode,userId:currentUser.userId})
+        },[])
     const usps = new USPS({
         server: 'http://production.shippingapis.com/ShippingAPI.dll',
         userId: '344UNIVE0189',
@@ -25,14 +33,15 @@ function ChangeInformation(props){
             state: user.state,
             zip: user.zipcode
           }, function(err, address) {
-              console.log(address)
             if(!address){
-                    alert("**INVALID INFORMATION WAS INPUTTED**")
-                    window.location.reload();
+                alert("**INVALID INFORMATION WAS INPUTTED**")
+                history.push('/CustomerInformation')
             }
             else{
-                setUser({ ...user,streetName:address.street1,city:address.city,zipcode:address.zip,state:address.state}) 
+                console.log(user)
+                dispatch(changeUserInformation(user));
                 alert("User information updated correctly")
+                history.push('/CustomerInformation')
             }
           });
           
@@ -42,12 +51,6 @@ function ChangeInformation(props){
     }
     return(
         <div>
-            <div>Update information Page</div>
-            <p>allow user to change firstname, lastname, street address, city, state, zipcode
-            <br/>address will be validated using api.
-            <br/>if address is invalid then reject changes
-            <br/>users will be routed back to CustomerInformation with an alert that tells the user that the address is invalid</p>
-                
                 <h1>Update Information </h1>
                 <h6>*You cannot change your Username or your email*</h6>
                 <label for="UserName" >Username </label>
@@ -83,4 +86,4 @@ function ChangeInformation(props){
     )
 }
 
-export default ChangeInformation
+export default withRouter(connect(null,{changeUserInformation})(ChangeInformation));

@@ -1,67 +1,59 @@
+import axios from 'axios';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import Logo from "./logo.jpg";
 import './Checkout.css';
-import Product from './Product';
+import Item from './Components/ItemComp/item';
 
-const list = [
-    {
-        id: '1234',
-        title: 'Acer - Chromebook Spin 713 2-in-1 13.5in 2K VertiView 3:2 Touch - Intel i5-10210U - 8GB Memory - 128GB SSD – Steel Gray',
-        price: 529.00,
-    },
-    {
-        id: '12',
-        title: 'Acer - Chromebook',
-        price: 529.00,
-    },
-    {
-        id: '123',
-        title: 'Macbook Pro',
-        price: 999.00,
-    }
-];
 
 const Checkout = () =>{
-    const [itemList, setItemList] = React.useState(list);
 
+    let loggedUser = JSON.parse(localStorage.getItem("user"))
+    console.log(loggedUser)
+    const [itemList, setItemList] = React.useState([]);
 
     function removeFromCart(id){
         const newList = itemList.filter((item) => item.id !== id);
-
         setItemList(newList);
     }
     function addItemsToCart(){
-        fetch('').then(item => item.json())
+        fetch('http://localhost:9025/cart/'+ loggedUser.userId).then(item => item.json())
         .then( item => {
-            itemList.push(item);
+            itemList.push(item.items);
             setItemList(itemList);
         })
     }
+    addItemsToCart();
+
+    let count = 0;
+    console.log(itemList.length);
     return (
         <div className = "checkout">
-            <Link to = './'>
-                <img  className='logo_checkout'
-                    src={Logo} alt = 'logo' />
-            </Link>
             <div className = 'checkout_container'>
                 <h3>Your Cart: </h3>
-                <ul>
-                    {itemList.map((item) => (
-                        <li key={itemList.indexOf(item)}>
-                            <div className = "Product_row">
-                                <Product
-                                    id={item.id}
-                                    title={item.title}
-                                    price = {item.price}
-                                />
-                                <button onClick={ () => removeFromCart(item.id)}>remove from cart</button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <table>
+                    <tr>
+                        <th>Name of Product&nbsp;&nbsp;</th>
+                        <th>Price&nbsp;&nbsp;</th>  
+                    </tr>
+                    <tbody>
+                        {
+                            itemList.map(function(currItem){
+                            return(
+                               
+                                <tr id={currItem.[itemList.indexOf(currItem)].itemId}>
+                                    <td>{currItem.[itemList.indexOf(currItem)].name}</td>
+                                    <td>{currItem.[itemList.indexOf(currItem)].price}</td>
+                                    <td><button onClick={ () => removeFromCart(currItem.id)}>remove from cart</button></td>
+                                </tr>
+                            )
+                            })
+                        }
+                    </tbody>
+                </table>
                 <p>Total amount: </p>
-                <button>Checkout</button>
+                <button onClick = { () => axios.post("http://localhost:9025/order", {
+        creator : loggedUser.userId, 
+    })}>Checkout</button>
             </div>
         </div>
     )

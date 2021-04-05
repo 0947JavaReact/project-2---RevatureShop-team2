@@ -7,20 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.revature.model.Item;
 import com.revature.repository.ItemDao;
-import com.revature.repository.UserDao;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Service
-@AllArgsConstructor(onConstructor=@__(@Autowired))
-@NoArgsConstructor
-public class ItemServices {
+import com.revature.Project2BackendApplication;
 
-private ItemDao iDao;
+
+@Service
+@NoArgsConstructor
+@AllArgsConstructor(onConstructor=@__(@Autowired))
+
+public class ItemServices {
+	
+	private ItemDao iDao;
 	
 	public Item getItemByName(String name) {
-		Item item = iDao.findByName(name);
+		Item item = iDao.findItemByName(name);
 		if(item==null) {
 			return null;
 		}
@@ -31,12 +34,18 @@ private ItemDao iDao;
 		return iDao.findAll();
 	}
 	
-	public void insertItem(Item item) {
+	public Item insertItem(Item item) {
+		//Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
 		iDao.save(item);
+		return item;
 	}
 	
+//	public List<Item> getItemByType(String type) {
+//		return iDao.find
+//	}
+	
 	public void deleteItem(Item item) {
-		
+		//Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
 		iDao.delete(item);
 	}
 	

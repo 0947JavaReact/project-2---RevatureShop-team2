@@ -1,11 +1,12 @@
 package com.revature.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -68,23 +69,58 @@ public class User {
 	private List<Order> orders;
 	
 	@OneToOne(mappedBy="cartCreator")
-	private Cart userCart;
+	private Cart currentCart;
 	
-	public User(String username, String password, String email, List<Order> orders, Cart userCart) {
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "user_type")
+	private UserType userType;
+
+
+	public User(String username, String password, String firstName, String lastName, String email, String streetName,
+			String city, String state, int zipcode, List<Order> orders, Cart currentCart, UserType userType) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.streetName = streetName;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.orders = orders;
+		this.currentCart = currentCart;
+		this.userType = userType;
+	}
+
+
+	public User(int userId, String username, String password, String firstName, String lastName, String email,
+			String streetName, String city, String state, int zipcode, List<Order> orders, Cart currentCart) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.streetName = streetName;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.orders = orders;
+		this.currentCart = currentCart;
+	}
+
+
+	public User(String username, String password, String email, List<Order> orders, Cart currentCart) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.orders = orders;
-		this.userCart = userCart;
+		this.currentCart = currentCart;
 	}
 	
-	public User(String username, String password, String email) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-	}
-
 	
 }

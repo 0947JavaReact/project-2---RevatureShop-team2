@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Cart;
 import com.revature.model.User;
 import com.revature.repository.CartDao;
-import com.revature.repository.UserDao;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

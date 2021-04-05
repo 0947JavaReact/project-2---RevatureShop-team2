@@ -1,0 +1,11 @@
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const REGISTER = "REGISTER";
+export const FETCH_ITEMS = "FETCH_ITEMS";
+export const NEW_ITEM = "NEW_ITEM";
+export const NEW_CUSTOMER_INFORMATION = "NEW_CUSTOMER_INFORMATION"
+export const FETCH_ORDERS = "FETCH_ORDERS";
+export const NEW_ORDER = "NEW_ORDER";
+export const FETCH_CART = "FETCH_CAFT";
+export const ADD_CART = "ADD_CART";
+export const CLEAR_CART = "CLEAR_CART";

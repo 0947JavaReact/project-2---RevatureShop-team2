@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import com.revature.model.Order;
 import com.revature.model.User;
 import com.revature.repository.OrderDao;
+import com.revature.repository.UserDao;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor(onConstructor=@__(@Autowired))
 @NoArgsConstructor
 public class OrderServices {
 

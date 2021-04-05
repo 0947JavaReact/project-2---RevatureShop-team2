@@ -1,0 +1,5 @@
+amazonProperties:
+ endpointUrl: https://s3.us-west-1.amazonaws.com
+ accessKey: AKIAQGUVDSHJANFEWTU7
+ secretKey: 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
+ bucketName: p2revstoreimages

@@ -1,7 +1,7 @@
+import axios from 'axios';
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import './item.css';
-import logo from './img.png'
 import ItemButton from "./itembutton";
 
 function Item({id, name, image, price}) {
@@ -16,8 +16,7 @@ function Item({id, name, image, price}) {
                 </p>
             </div>
 
-            <img src ={logo} alt=""/>
-            <button>Add to Cart</button>
+            <button onClick = { () => axios.post("http://localhost:9025/cart/add", localStorage.user, this.name, this.price, this.id)}>Add to Cart</button>
 
         </div>
     )
