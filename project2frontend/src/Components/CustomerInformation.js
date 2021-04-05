@@ -1,21 +1,16 @@
 import React, {useState,useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import CustomerOrders from './CustomerOrders';
-import UserServices from '../services/UserServices'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom';
 import './CustomerInformation.css'
 
 function CustomerInformation(props){
-    let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:''});
- 
+    let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:'',userId:''});
+    const currentUser = useSelector(state => state.user.Loggeduser)
     useEffect(() => {
-        const fetchData = async () => {
-            UserServices.getUserById(6).then(res => {
-            setUser({username:res.data.username,password:res.data.password,firstName:res.data.firstName,lastName:res.data.lastName,email:res.data.email,streetName:res.data.streetName,city:res.data.city,state:res.data.state,zipcode:res.data.zipcode})
-       })}
-        fetchData();
-        },[])
-
+        setUser({username:currentUser.username,password:currentUser.password,firstName:currentUser.firstName,lastName:currentUser.lastName,email:currentUser.email,streetName:currentUser.streetName,city:currentUser.city,state:currentUser.state,zipcode:currentUser.zipcode,userId:currentUser.userId})
+    },[])
     return(
         <div >
             <div className="userInfo">

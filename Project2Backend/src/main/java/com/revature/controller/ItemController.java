@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 
 @RestController
 @RequestMapping(value="/store")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins="*")
 //@AllArgsConstructor(onConstructor=@__({@Autowired}))
 @NoArgsConstructor
 

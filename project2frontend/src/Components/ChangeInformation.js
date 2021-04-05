@@ -16,6 +16,7 @@ function ChangeInformation(props){
 
     useEffect(() => {
             setUser({username:currentUser.username,password:currentUser.password,firstName:currentUser.firstName,lastName:currentUser.lastName,email:currentUser.email,streetName:currentUser.streetName,city:currentUser.city,state:currentUser.state,zipcode:currentUser.zipcode,userId:currentUser.userId})
+            
         },[])
     const usps = new USPS({
         server: 'http://production.shippingapis.com/ShippingAPI.dll',

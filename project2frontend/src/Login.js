@@ -28,12 +28,10 @@ class Login extends Component {
         this.setState({user:nextProps})
         if (nextProps.loggedUser.userType == "MANAGER") {
             console.log(nextProps.loggedUser.userType)
-            return <Redirect push to="/add_new_item/" />
-        
+            this.props.history.push('/add_new_item')
         } else if (nextProps.loggedUser.userType == "CUSTOMER") {
             console.log(nextProps.loggedUser.userType)
-           // return <Redirect push to="/CustomerInformation" />
-             this.props.history.push('/CustomerInformation')
+             this.props.history.push('/store_catalogue')
         }
         else{
             alert("wrong Info. Try again")

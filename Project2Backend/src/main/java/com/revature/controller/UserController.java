@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 /*
 * User Controller!
 */
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/user")
 @AllArgsConstructor(onConstructor=@__({@Autowired}))
