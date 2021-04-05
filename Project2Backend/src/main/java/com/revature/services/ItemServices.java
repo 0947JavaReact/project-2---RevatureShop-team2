@@ -35,13 +35,13 @@ public class ItemServices {
 	}
 	
 	public Item insertItem(Item item) {
-		//Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
+		Project2BackendApplication.logger.info("item " + item.getName() + " has been inserted");
 		iDao.save(item);
 		return item;
 	}
 	
 	public void deleteItem(Item item) {
-		//Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
+		Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
 		iDao.delete(item);
 	}
 	

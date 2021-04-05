@@ -15,7 +15,6 @@ class ForgotPassword extends Component {
             emailId: '',
         }
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
-
     }
     changeEmailHandler = (event) => {
         this.setState({ emailId: event.target.value });

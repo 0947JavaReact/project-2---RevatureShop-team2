@@ -60,7 +60,7 @@ class Login extends Component {
                     <img className='logo_login'
                         src={Logo} alt='logo' />
                 </Link>
-                <div className='login__container'>
+                <div className='login__container' style={{width:"400px"}}>
                     <h1>Sign-in</h1>
 
                     <form>

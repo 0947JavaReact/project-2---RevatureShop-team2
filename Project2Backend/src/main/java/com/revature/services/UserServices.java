@@ -6,6 +6,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 import com.revature.repository.UserDao;
+import com.revature.Project2BackendApplication;
 import com.revature.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class UserServices {
 	 */
 	public User findByEmailAndPass(String email, String password) {
 		User user = userDao.findByEmailAndPassword(email, password);
+		Project2BackendApplication.logger.info("user " + user.getUsername() + " has been logged in");
 		return user;
 	}
 
@@ -56,6 +58,7 @@ public class UserServices {
 		if (user == null) {
 			return null;
 		}
+		
 		return user;
 	}
 
@@ -63,6 +66,7 @@ public class UserServices {
 	 * Insert the user
 	 */
 	public User insertUser(User user) {
+		Project2BackendApplication.logger.info("user " + user.getUsername() + " has been inserted");
 		return userDao.save(user);
 	}
 
@@ -77,6 +81,7 @@ public class UserServices {
 	 * Send email from gmail using the Revatureshop email I created
 	 */
 	public void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
+		Project2BackendApplication.logger.info("user " + to + " has reset their password");
 		Properties props = System.getProperties();
 		String host = "smtp.gmail.com";
 		props.put("mail.smtp.starttls.enable", "true");
