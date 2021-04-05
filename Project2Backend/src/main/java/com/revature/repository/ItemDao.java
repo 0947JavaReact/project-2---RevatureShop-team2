@@ -11,7 +11,6 @@ public interface ItemDao extends JpaRepository<Item,Integer>{
 	public List<Item> findAll();
 	
 	public Item findItemByName(String name);
-	
-	//public List<Item> findByItemType(String itype);
+
 	
 }

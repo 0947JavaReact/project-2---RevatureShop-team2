@@ -41,31 +41,21 @@ public class ItemController {
 		this.amazonClient = amazonClient;
 	}
 	
-	
 	//adding new item to the store
-	//@PostMapping(value="/create", consumes=MediaType.APPLICATION_JSON_VALUE)
 	@PostMapping(value="/create")
 	public @ResponseBody Item createItem(@RequestBody LinkedHashMap<String, Object> itemMap) {
-	//public @ResponseEntity<String> insertItem(@RequestBody LinkedHashMap<String, Object> itemMap) {
+
 		System.out.println(itemMap);
-		//check if item name already exists
-//		Item item = new Item((String) itemMap.get("name"), byte[] itemMap.get("item_photo")), Double.parseDouble((String) itemMap.get("price"))));
+		
 		Item item2 = new Item();
 		item2.setName((String) itemMap.get("name"));
 		//item2.setPhoto((byte[]) itemMap.get("photo"));
 		
 		if (itemMap.get("photo")==(null) || itemMap.get("photo").equals("null") || itemMap.get("photo").equals("")){
-//			item2.setPhoto(null);
+
 			item2.setPhoto(amazonClient.retrieveImage("image-coming-soon.png"));
 		} else if (itemMap.get("photo").equals("default")) {
-//			ImageRecovery ir = new ImageRecovery();
-//			try {
-//				//s3client
-//				item2.setPhoto(ir.recoverImageFromUrl("https://p2revstoreimages.s3-us-west-1.amazonaws.com/image-coming-soon.png"));
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+
 			item2.setPhoto(amazonClient.retrieveImage("image-coming-soon.png"));
 		} else {
 			//item2.setPhoto(null);
@@ -77,17 +67,7 @@ public class ItemController {
 			System.out.println(parsedForACRetrieval);
 			
 			item2.setPhoto(amazonClient.retrieveImage(parsedForACRetrieval));
-			//			ImageRecovery ir = new ImageRecovery();
-//			try {
-//				//ir.recoverImageFromUrl(imageString);
-//				item2.setPhoto(ir.recoverImageFromUrl(imageString));
-//				amazonClient.retrieveImage((String) itemMap.get("photo"));
-//				//uploadFile returns String fileUrl... so just parse this to be everything after https://s3.us-west-1.amazonaws.com/p2revstoreimages/
-//				
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+
 		}
 		//item2.setPhoto(null);
 		item2.setPrice((Integer.parseInt((String) itemMap.get("price"))));
@@ -118,10 +98,6 @@ public class ItemController {
 		}
 		return new ResponseEntity<>(iServ.getAllItems(),HttpStatus.OK);
 	}
-	
-	//update item
-//	@PutMapping("/item/{itemId}")
-//	public ResponseEntity<Item> updateItem(@PathVariable )
 	
 	//delete item
 	@DeleteMapping("/items/{itemName}")

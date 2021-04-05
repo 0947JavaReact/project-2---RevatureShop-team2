@@ -40,10 +40,6 @@ public class ItemServices {
 		return item;
 	}
 	
-//	public List<Item> getItemByType(String type) {
-//		return iDao.find
-//	}
-	
 	public void deleteItem(Item item) {
 		//Project2BackendApplication.logger.info("item " + item.getName() + " has been deleted");
 		iDao.delete(item);
