@@ -50,8 +50,6 @@ public class ItemController {
 	public @ResponseBody Item createItem(@RequestBody LinkedHashMap<String, Object> itemMap) {
 	//public @ResponseEntity<String> insertItem(@RequestBody LinkedHashMap<String, Object> itemMap) {
 		System.out.println(itemMap);
-		
-		
 		//check if item name already exists
 //		Item item = new Item((String) itemMap.get("name"), byte[] itemMap.get("item_photo")), Double.parseDouble((String) itemMap.get("price"))));
 		Item item2 = new Item();

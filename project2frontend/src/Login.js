@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import './Login.css';
 import Logo from "./logo.jpg";
-import { Link } from 'react-router-dom';
+import { Link,Redirect, withRouter } from 'react-router-dom';
 import UserServices from './services/UserServices';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import {loginUser} from './actions/userActions'
 
 
 {/*Login page */ }
@@ -12,29 +16,34 @@ class Login extends Component {
         super(props)
 
         this.state = {
+            user: [],
             emailId: '',
             password: ''
         }
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
-
+   
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({user:nextProps})
+        if (nextProps.loggedUser.userType == "MANAGER") {
+            console.log(nextProps.loggedUser.userType)
+            return <Redirect push to="/add_new_item/" />
+        
+        } else if (nextProps.loggedUser.userType == "CUSTOMER") {
+            console.log(nextProps.loggedUser.userType)
+           // return <Redirect push to="/CustomerInformation" />
+             this.props.history.push('/CustomerInformation')
+        }
+        else{
+            alert("wrong Info. Try again")
+            window.location.reload(true);
+        }
+      }
     checkUser = (e) => {
         e.preventDefault();
         let user = { emailId: this.state.emailId, password: this.state.password };
-
-        {/* Display the user in JSON in the console */ }
-        console.log('User => ' + JSON.stringify(user));
-
-        {/* Calls User Services to create the user */ }
-        UserServices.getUserLogin(user.emailId, user.password)
-            .then(res => {
-                if (res.userType === 'MANAGER') {
-                    this.props.history.push('/manager');
-                } else if (res.userType === 'CUSTOMER') {
-                    this.props.history.push('/customer');
-                }
-            });
+        this.props.loginUser(user);
     }
 
 
@@ -47,7 +56,7 @@ class Login extends Component {
 
     render() {
         return (
-
+            
             <div className='login'>
                 <Link to='./login'>
                     <img className='logo_login'
@@ -88,4 +97,12 @@ class Login extends Component {
         )
     }
 }
-export default Login;
+Login.propTypes = {
+    loginUser:PropTypes.func.isRequired,
+    loggedUser: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    loggedUser: state.user.Loggeduser
+  });
+export default withRouter(connect(mapStateToProps, { loginUser })(Login));
