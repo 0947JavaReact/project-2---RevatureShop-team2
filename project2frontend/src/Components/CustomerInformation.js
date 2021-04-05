@@ -9,8 +9,10 @@ function CustomerInformation(props){
     let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:'',userId:''});
     const currentUser = useSelector(state => state.user.Loggeduser)
     useEffect(() => {
+       
         setUser({username:currentUser.username,password:currentUser.password,firstName:currentUser.firstName,lastName:currentUser.lastName,email:currentUser.email,streetName:currentUser.streetName,city:currentUser.city,state:currentUser.state,zipcode:currentUser.zipcode,userId:currentUser.userId})
-    },[])
+        
+    },currentUser)
     return(
         <div >
             <div className="userInfo">
@@ -52,5 +54,4 @@ function CustomerInformation(props){
 
     )
 }
-
 export default CustomerInformation

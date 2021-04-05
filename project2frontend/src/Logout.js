@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-
-
-export default class Logout extends Component {
-
+import {logoutUser} from './actions/userActions'
+import { Link,withRouter} from "react-router-dom";
+import { connect } from 'react-redux';
+class Logout extends Component {
+  constructor(props) {
+    super(props)
+    this.logout = this.logout.bind(this);
+  }
   logout = () => {
-    window.localStorage.clear();
-    window.location.href = "http://localhost:3000/login";
+    this.props.logoutUser()
   }
   
   render() {
@@ -14,3 +17,5 @@ export default class Logout extends Component {
     )
   }
 }
+
+export default withRouter(connect(null, { logoutUser })(Logout));
