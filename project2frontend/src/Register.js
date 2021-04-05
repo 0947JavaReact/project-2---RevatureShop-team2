@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Register.css';
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import Logo from './logo.jpg';
 import UserServices from './services/UserServices';
 
@@ -16,7 +16,7 @@ class Register extends Component {
             lastName: '',
             username: '',
             emailId: '',
-            streetname: '',
+            streetName: '',
             city: '',
             state: '',
             zipcode: '',
@@ -45,7 +45,7 @@ class Register extends Component {
             lastName: this.state.lastName,
             username: this.state.username,
             email: this.state.emailId,
-            streetname: this.state.streetname,
+            streetName: this.state.streetName,
             city: this.state.city,
             state:this.state.state,
             zipcode: this.state.zipcode,
@@ -79,7 +79,7 @@ class Register extends Component {
         this.setState({ password: event.target.value });
     }
     changeStreetHandler = (event) => {
-        this.setState({ streetname: event.target.value });
+        this.setState({ streetName: event.target.value });
     }
     changeCityHandler = (event) => {
         this.setState({ city: event.target.value });
@@ -160,4 +160,4 @@ class Register extends Component {
         )
     }
 }
-export default Register;
+export default withRouter(Register);
