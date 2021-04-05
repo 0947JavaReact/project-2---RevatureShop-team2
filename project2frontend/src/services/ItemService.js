@@ -8,7 +8,7 @@ class ItemServices{
         return axios.get(ITEM_API_BASE_URL+ "/allitems" )
     }
     createItem(item){
-        return axios.get(ITEM_API_BASE_URL + '/create',item)
+        return axios.post(ITEM_API_BASE_URL + '/create',item)
     }
     getItemByName(name){
         return axios.get(ITEM_API_BASE_URL + '/' + name,name)
