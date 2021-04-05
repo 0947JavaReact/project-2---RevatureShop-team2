@@ -30,8 +30,13 @@ function ShowItems() {
                     <tbody>
                         {
                             currentItems.map(function(currItem){
+<<<<<<< HEAD
                                 let photoString = "data:image/png;base64," + currItem.photo;
+=======
+                            let photoString = "data:image/png;base64," + currItem.photo;
+>>>>>>> 8764462613e927f99d6c0bd14ab4a176a20847b5
                             return(
+                               
                                 <tr id={currItem.itemId}>
                                     <td><img src={photoString}/></td>
                                     <td>{currItem.name}</td>

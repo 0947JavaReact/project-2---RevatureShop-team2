@@ -26,7 +26,7 @@ import com.revature.services.UserServices;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(value = "/order")
 @AllArgsConstructor(onConstructor=@__({@Autowired}))

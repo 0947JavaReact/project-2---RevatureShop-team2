@@ -11,6 +11,7 @@ const initialState = {
     streetName:"",
     city:"",
     zipcode:"",
+    userType:0
     }
 }
 

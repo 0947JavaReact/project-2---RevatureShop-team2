@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 function CustomerOrders(props) {
   
   const currentOrders = useSelector(state => state.order.orders)
+  const currentUser = useSelector(state => state.user.Loggeduser)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchOrders(6));
+
+    dispatch(fetchOrders(currentUser.userId));
   }, [])
     return(
     <div>

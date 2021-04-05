@@ -2,6 +2,7 @@ import { connect } from "react-redux"
 import React, {useState,useEffect } from 'react';
 import {changeUserInformation} from '../actions/userActions'
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, withRouter } from 'react-router-dom';
 import './ChangeInformation.css';
 import USPS from 'usps-webtools'
 
@@ -13,7 +14,7 @@ function ChangeInformation(props){
    let [user, setUser] = useState({username:'',password:'',firstName:'',lastName:'',email:'',userType:1,streetName:'',city:'',state:'',zipcode:'',userId:''});
     const currentUser = useSelector(state => state.user.Loggeduser)
     const dispatch = useDispatch();
-
+    const history = useHistory();
     useEffect(() => {
             setUser({username:currentUser.username,password:currentUser.password,firstName:currentUser.firstName,lastName:currentUser.lastName,email:currentUser.email,streetName:currentUser.streetName,city:currentUser.city,state:currentUser.state,zipcode:currentUser.zipcode,userId:currentUser.userId})
         },[])
@@ -32,14 +33,15 @@ function ChangeInformation(props){
             state: user.state,
             zip: user.zipcode
           }, function(err, address) {
-              console.log(address)
             if(!address){
-                    alert("**INVALID INFORMATION WAS INPUTTED**")
-                    window.location.reload();
+                alert("**INVALID INFORMATION WAS INPUTTED**")
+                history.push('/CustomerInformation')
             }
             else{
+                console.log(user)
                 dispatch(changeUserInformation(user));
                 alert("User information updated correctly")
+                history.push('/CustomerInformation')
             }
           });
           
@@ -84,4 +86,4 @@ function ChangeInformation(props){
     )
 }
 
-export default ChangeInformation
+export default withRouter(connect(null,{changeUserInformation})(ChangeInformation));

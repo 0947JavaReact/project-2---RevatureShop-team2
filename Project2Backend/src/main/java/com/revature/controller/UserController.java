@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 /*
 * User Controller!
 */
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/user")
 @AllArgsConstructor(onConstructor=@__({@Autowired}))
@@ -43,6 +43,7 @@ public class UserController {
 	*/
 	@PostMapping()
 	public User createUser(@RequestBody User user) {
+		System.out.println(user);
 		return this.userServices.insertUser(user);
 	}
 
@@ -50,7 +51,7 @@ public class UserController {
 	* Get the User by email and password to login
 	*/
 	@GetMapping("/user")
-	public ResponseEntity<?> getUserByLogin(@RequestParam String emailId, @RequestParam String password) {
+	public ResponseEntity<?> getUserByLogin(@RequestParam(name = "emailId") String emailId, @RequestParam(name = "password") String password) {
 		User user = this.userServices.findByEmailAndPass(emailId, password);
 		if (user == null) {
 			return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
@@ -112,6 +113,8 @@ public class UserController {
 	@PutMapping("/address/{id}")
 	public ResponseEntity<User> updateUserAddress(@PathVariable int id, @RequestBody User user){
 		User currentUser = this.userServices.getUserById(id);
+		currentUser.setFirstName(user.getFirstName());
+		currentUser.setLastName(user.getLastName());
 		currentUser.setStreetName(user.getStreetName());
 		currentUser.setCity(user.getCity());
 		currentUser.setState(user.getState());

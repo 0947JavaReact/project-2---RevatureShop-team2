@@ -12,11 +12,13 @@ import Logout from './Logout'
 import ResetPassword from './ResetPassword'
 import { Provider } from 'react-redux';
 import store from './reduxStore';
+import Header from './header'
 
 function App() {
   return (
     <Provider store = {store}>
     <Router>
+      <Header />
       <div className="app">
         <Switch>
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_API_BASE_URL = "http://localhost:9025/users";
+const USER_API_BASE_URL = "http://localhost:9025/user";
 
 {/* User Services! */ }
 
@@ -24,13 +24,7 @@ class UserServices {
     }
     // Get user's email and password to login
     getUserLogin(emailId, password){
-        return axios.get(USER_API_BASE_URL+"/user" + '?emailId=' + emailId+'&password='+password)
-        .then(response => {
-            if (response.data) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-            }
-            return response.data;
-        });
+        return axios.get(USER_API_BASE_URL+"/user/" + '?emailId=' + emailId+'&password='+password)
     }
     // Update user
     updateUser(user, userId){
