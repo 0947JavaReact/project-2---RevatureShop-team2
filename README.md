@@ -1,10 +1,10 @@
 # project-2---RevatureShop-team2
 
-## About:
+## Project Description:
 
 Online store where users can view all items (and an image associated with each item) in the store, add those items to a cart, and then purchase items. Users can register an account, login with said account, recover a forgotten password, and update the account if needed. Users are also able to provide a mailing address to deliver the items which will be verified with the USPS API. A manager can add new items to the cart by providing an item name, price, and uploading an image of the item, all of which will then be updated in the store.
 
-## Overview:
+## Features:
 
 The System:
 - A list of Users
@@ -41,6 +41,7 @@ Cart:
 ## Technologies:
 
 - Java 8
+- PostgreSQL
 - Apache Maven 3.6.3
 - JavaScript
 - Hibernate
@@ -68,6 +69,8 @@ Cart:
 
 `git clone https://github.com/0947JavaReact/project-2---RevatureShop-team2.git`
 
+### Front End
+
 #### Step 2a: Install Node.JS with npm install if you don't already have it
 
 Instructions can be found [here](https://phoenixnap.com/kb/install-node-js-npm-on-windows).
@@ -81,11 +84,15 @@ Instructions can be found [here](https://phoenixnap.com/kb/install-node-js-npm-o
 `npm install axios`
 `npm install redux-thunk`
 
-### Front End
-
-
 ### Back End
 
+1. Open `project-2---RevatureShop-team2/tree/main/Project2Backend`
+
+2. Create an AWS S3 Bucket and AWS RDS
+
+2. Replace credentials in application.yml with your own credentials
+
+3. Run as a Spring Boot Application
 
 ## Contributors:
 
